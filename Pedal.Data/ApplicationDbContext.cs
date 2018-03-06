@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,5 +20,9 @@ namespace Pedal.Data
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Rent> Rents { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Cash> CashBook { get; set; }
     }
 }
