@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace Pedal.Models
 {
-    public class Cycletype
+    public enum CycleType
     {
-        public int Cycletypeid { get; set; }
-        [Required]
-        public string Cycletypename { get; set; }
+        Gear = 1,
+        NonGear = 2
     }
 }
