@@ -10,5 +10,13 @@ namespace Pedal.Data.EntityTypeConfiguration
 {
     class BookingStatusTableConfiguration: EntityTypeConfiguration <BookingStatusTable>
     {
+        public BookingStatusTableConfiguration()
+        {
+            Property(c => c.IsRented)
+                .IsRequired();
+
+            HasRequired(c => c.Booking)
+                .WithRequiredDependent(s => s.BookingStatusTable);
+        }
     }
 }
