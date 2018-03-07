@@ -10,5 +10,12 @@ namespace Pedal.Data.EntityTypeConfiguration
 {
     class CashMemoConfiguration: EntityTypeConfiguration <CashMemo>
     {
+        public CashMemoConfiguration()
+        {
+            Property(c => c.RentedHour)
+                .IsRequired();
+            Property(c => c.CashReceiveTime)
+                .IsRequired();
+        }
     }
 }
