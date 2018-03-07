@@ -14,12 +14,15 @@ namespace Pedal.Models
         public int RentedHour { get; set; }
         public DateTime RentedTime { get; set; }
         public DateTime? ReturnTime { get; set; }
-        public int? BookingId { get; set; }
         public Booking Booking { get; set; }
         public int RentedFromStoreId { get; set; }
         public Store RentedFromStore { get; set; }
         public int ToBeSubmittedStoreId { get; set; }
         public Store ToBeSubmittedStore { get; set; }
         public int ManagerId { get; set; }
+        public Manager Manager { get; set; }
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
+
     }
 }

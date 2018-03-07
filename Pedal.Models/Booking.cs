@@ -17,5 +17,6 @@ namespace Pedal.Models
         public BookingStatusTable BookingStatusTable { get; set; }
         public string BookingTrackId { get; set; }
         public Cycle Cycle { get; set; }
+        public Rent Rent { get; set; }
     }
 }
