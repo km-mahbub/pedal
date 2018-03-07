@@ -17,7 +17,8 @@ namespace Pedal.Data.EntityTypeConfiguration
             Property(c => c.BookingStatus)
                 .IsRequired();
             Property(c => c.BookingTrackId)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(255);
 
             HasRequired(c=>c.Store)
                 .WithMany(s=>s.Bookings)

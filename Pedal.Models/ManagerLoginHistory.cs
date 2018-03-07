@@ -11,5 +11,7 @@ namespace Pedal.Models
         public int ManagerLoginHistoryId { get; set; }
         public DateTime LoginTime { get; set; }
         public DateTime LogoutTime { get; set; }
+        public int ManagerId { get; set; }
+        public Manager Manager { get; set; }
     }
 }

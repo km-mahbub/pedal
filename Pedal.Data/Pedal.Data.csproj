@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="EntityTypeConfiguration\AdminConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\ApplicationUserConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\BookingConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\BookingStatusTableConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\CashMemoConfiguration.cs" />
