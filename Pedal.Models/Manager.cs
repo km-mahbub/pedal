@@ -11,7 +11,6 @@ namespace Pedal.Models
         public int ManagerId { get; set; }
         public string IdentityId { get; set; }
         public ApplicationUser Identity { get; set; }
-        public int StoreId { get; set; }
         public Store Store { get; set; }
         public bool IsLoggedIn { get; set; }
     }

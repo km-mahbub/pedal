@@ -10,5 +10,6 @@ namespace Pedal.Data.EntityTypeConfiguration
 {
     class AdminConfiguration: EntityTypeConfiguration<Admin>
     {
+
     }
 }

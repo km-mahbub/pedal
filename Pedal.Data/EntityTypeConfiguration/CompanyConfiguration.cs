@@ -10,5 +10,12 @@ namespace Pedal.Data.EntityTypeConfiguration
 {
     class CompanyConfiguration: EntityTypeConfiguration<Company>
     {
+        public CompanyConfiguration()
+        {
+            Property(s => s.Name)
+                .IsRequired()
+                .HasMaxLength(50);
+
+        }
     }
 }

@@ -15,8 +15,6 @@ namespace Pedal.Models
         public DateTime BookingTime { get; set; }
         public bool BookingStatus { get; set; }
         public string BookingTrackId { get; set; }
-
-        public int CycleId { get; set; }
         public Cycle Cycle { get; set; }
     }
 }
