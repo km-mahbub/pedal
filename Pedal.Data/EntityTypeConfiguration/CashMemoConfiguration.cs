@@ -16,6 +16,17 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .IsRequired();
             Property(c => c.CashReceiveTime)
                 .IsRequired();
+
+            HasRequired(m => m.Manager)
+                .WithMany(c => c.CashMemos)
+                .HasForeignKey(d => d.ManagerId);
+
+            HasRequired(s => s.Store)
+                .WithMany(c => c.CashMemos)
+                .HasForeignKey(d => d.StoreId);
+
+            
+
         }
     }
 }
