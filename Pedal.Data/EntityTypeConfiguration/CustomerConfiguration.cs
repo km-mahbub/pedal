@@ -12,7 +12,10 @@ namespace Pedal.Data.EntityTypeConfiguration
     {
         public CustomerConfiguration()
         {
-            Property(c => c.)
+            Property(c => c.TotalRentHour)
+                .HasColumnAnnotation("Default", 0);
+            Property(c => c.TotalRentCount)
+                .HasColumnAnnotation("Default", 0);
         }
     }
 }
