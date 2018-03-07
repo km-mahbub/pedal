@@ -15,5 +15,6 @@ namespace Pedal.Models
         public bool IsLoggedIn { get; set; }
         public List<CashMemo> CashMemos { get; set; }
         public List<ManagerLoginHistory> ManagerLoginHistory { get; set; }
+        public List<Rent> Rents { get; set; }
     }
 }
