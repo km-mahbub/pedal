@@ -58,8 +58,11 @@
     <Compile Include="Migrations\201803062225161_InitialMigration.Designer.cs">
       <DependentUpon>201803062225161_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803071713164_AddedModels.cs" />
+    <Compile Include="Migrations\201803071713164_AddedModels.Designer.cs">
+      <DependentUpon>201803071713164_AddedModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="PedalDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +78,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803062225161_InitialMigration.resx">
       <DependentUpon>201803062225161_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803071713164_AddedModels.resx">
+      <DependentUpon>201803071713164_AddedModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

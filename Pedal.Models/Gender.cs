@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Pedal.Models
 {
-    public class User
+    public enum Gender
     {
+        Male = 1,
+        Female = 2,
+        UnDisclosed = 3
     }
 }

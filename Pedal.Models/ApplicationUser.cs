@@ -19,5 +19,16 @@ namespace Pedal.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public DateTime DateOfBirth { get; set; }
+        public int UserAddressId { get; set; }
+        public UserAddress UserAddress { get; set; }
+        public string NationalId { get; set; }
+        public string PassportNumber { get; set; }
+        public string DrivingLicense { get; set; }
+        public Gender Gender { get; set; }
     }
 }

@@ -8,5 +8,8 @@ namespace Pedal.Models
 {
     public class Admin
     {
+        public int AdminId { get; set; }
+        public string IdentityId { get; set; }
+        public ApplicationUser Identity { get; set; }
     }
 }

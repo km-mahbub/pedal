@@ -7,7 +7,7 @@ using Pedal.Models;
 
 namespace Pedal.Repositories.Interfaces
 {
-    interface IUserRepository: IRepository<User>
+    public interface ICustomerRepository: IRepository<Customer>
     {
     }
 }

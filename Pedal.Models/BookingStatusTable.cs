@@ -10,6 +10,7 @@ namespace Pedal.Models
     {
         public int BookingStatusTableId { get; set; }
         public int BookingId { get; set; }
+        public Booking Booking { get; set; }
         public bool IsRented { get; set; }
     }
 }

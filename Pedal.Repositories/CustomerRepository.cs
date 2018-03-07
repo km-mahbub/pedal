@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Pedal.Repositories.Interfaces;
 
-namespace Pedal.Repositories.Interfaces
+namespace Pedal.Repositories
 {
-    public interface ICashRepository :IRepository<Cash>
+    public class CustomerRepository: Repository<Customer>, ICustomerRepository
     {
     }
 }

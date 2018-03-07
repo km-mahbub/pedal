@@ -44,14 +44,14 @@
     <Compile Include="IAdminRepository.cs" />
     <Compile Include="IBookingRepository.cs" />
     <Compile Include="IBookingStatusTableRepository.cs" />
-    <Compile Include="ICashRepository.cs" />
+    <Compile Include="ICashMemoRepository.cs" />
     <Compile Include="ICompanyRepository.cs" />
     <Compile Include="ICycleRepository.cs" />
     <Compile Include="IManagerRepository.cs" />
     <Compile Include="IRentRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IStoreRepository.cs" />
-    <Compile Include="IUserRepository.cs" />
+    <Compile Include="ICustomerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

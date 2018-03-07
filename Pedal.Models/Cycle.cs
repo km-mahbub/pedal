@@ -9,18 +9,13 @@ namespace Pedal.Models
 {
     public class Cycle
     {
-        public int Cycleid { get; set; }
-        [Required]
-        public int Cycletypeid { get; set; }
-        [Required]
-        public int Companyid { get; set; }
-        [Required]
-        public string Status { get; set; }
-        [Required]
-        public int Rentedhour { get; set; }
-        [Required]
-        public int Currentstoreid { get; set; }
-        public int? Storeid { get; set; }
-
+        public int CycleId { get; set; }
+        public CycleStatusType CycleStatusType { get; set; }
+        public int RentedHour { get; set; }
+        public CycleType CycleType { get; set; }
+        public int CompanyId { get; set; }
+        public Company Company { get; set; }
+        public int StoreId { get; set; }
+        public Store Store { get; set; }
     }
 }

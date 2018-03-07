@@ -9,8 +9,8 @@ namespace Pedal.Models
 {
     public class Company
     {
-        public int Companyid { get; set; }
-        [Required]
+        public int CompanyId { get; set; }
         public string Name { get; set; }
+        public List<Cycle> Cycles { get; set; }
     }
 }
