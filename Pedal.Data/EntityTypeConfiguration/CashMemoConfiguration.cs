@@ -24,8 +24,10 @@ namespace Pedal.Data.EntityTypeConfiguration
             HasRequired(s => s.Store)
                 .WithMany(c => c.CashMemos)
                 .HasForeignKey(d => d.StoreId);
+            HasRequired(m => m.Customer)
+                .WithMany(c => c.CashMemos)
+                .HasForeignKey(d => d.CustomerId);
 
-            
 
         }
     }

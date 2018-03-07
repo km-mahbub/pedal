@@ -65,14 +65,18 @@
     <Compile Include="EntityTypeConfiguration\ManagerLoginHistoryConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\RentConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\StoreConfiguration.cs" />
-    <Compile Include="EntityTypeConfiguration\UserAddressConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\AddressConfiguration.cs" />
     <Compile Include="Migrations\201803062225161_InitialMigration.cs" />
     <Compile Include="Migrations\201803062225161_InitialMigration.Designer.cs">
       <DependentUpon>201803062225161_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201803071713164_AddedModels.cs" />
-    <Compile Include="Migrations\201803071713164_AddedModels.Designer.cs">
-      <DependentUpon>201803071713164_AddedModels.cs</DependentUpon>
+    <Compile Include="Migrations\201803072152403_AddedModels.cs" />
+    <Compile Include="Migrations\201803072152403_AddedModels.Designer.cs">
+      <DependentUpon>201803072152403_AddedModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803072207159_AddedMoreDbRelation.cs" />
+    <Compile Include="Migrations\201803072207159_AddedMoreDbRelation.Designer.cs">
+      <DependentUpon>201803072207159_AddedMoreDbRelation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,8 +95,11 @@
     <EmbeddedResource Include="Migrations\201803062225161_InitialMigration.resx">
       <DependentUpon>201803062225161_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803071713164_AddedModels.resx">
-      <DependentUpon>201803071713164_AddedModels.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803072152403_AddedModels.resx">
+      <DependentUpon>201803072152403_AddedModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803072207159_AddedMoreDbRelation.resx">
+      <DependentUpon>201803072207159_AddedMoreDbRelation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

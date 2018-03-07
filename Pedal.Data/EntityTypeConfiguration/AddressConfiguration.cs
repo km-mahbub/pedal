@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Pedal.Data.EntityTypeConfiguration
 {
-    class UserAddressConfiguration: EntityTypeConfiguration<Address>
+    class AddressConfiguration: EntityTypeConfiguration<Address>
     {
-        public UserAddressConfiguration()
+        public AddressConfiguration()
         {
             Property(a => a.Area)
                 .IsRequired();

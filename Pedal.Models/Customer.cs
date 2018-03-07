@@ -15,5 +15,7 @@ namespace Pedal.Models
         public int TotalRentHour { get; set; }
         public int TotalRentCount { get; set; }
         public List<Rent> Rents { get; set; }
+        public List<CashMemo> CashMemos { get; set; }
+        public List<Booking> Bookings { get; set; }
     }
 }

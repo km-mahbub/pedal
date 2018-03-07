@@ -29,7 +29,7 @@ namespace Pedal.Data.EntityTypeConfiguration
             Property(a => a.DrivingLicense)
                 .IsOptional();
 
-            HasOptional(c => c.Address)
+            HasRequired(c => c.Address)
                 .WithMany(a => a.ApplicationUsers)
                 .HasForeignKey(c => c.AddressId);
         }

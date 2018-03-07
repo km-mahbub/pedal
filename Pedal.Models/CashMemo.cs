@@ -16,6 +16,9 @@ namespace Pedal.Models
         public int ManagerId { get; set; }
         public Manager Manager { get; set; }
 
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
+
         public int RentId { get; set; }
         public Rent Rent { get; set; }
 

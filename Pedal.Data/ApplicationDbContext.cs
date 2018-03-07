@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Pedal.Data.EntityTypeConfiguration;
 using Pedal.Models;
 
 namespace Pedal.Data
@@ -33,5 +34,22 @@ namespace Pedal.Data
         public DbSet<Rent> Rents { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<CashMemo> CashMemos { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
+            modelBuilder.Configurations.Add(new BookingConfiguration());
+            modelBuilder.Configurations.Add(new BookingStatusTableConfiguration());
+            modelBuilder.Configurations.Add(new CashMemoConfiguration());
+            modelBuilder.Configurations.Add(new CompanyConfiguration());
+            modelBuilder.Configurations.Add(new CustomerConfiguration());
+            modelBuilder.Configurations.Add(new CycleConfiguration());
+            modelBuilder.Configurations.Add(new ManagerConfiguration());
+            modelBuilder.Configurations.Add(new ManagerLoginHistoryConfiguration());
+            modelBuilder.Configurations.Add(new RentConfiguration());
+            modelBuilder.Configurations.Add(new StoreConfiguration());
+            modelBuilder.Configurations.Add(new AddressConfiguration());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
