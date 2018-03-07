@@ -18,8 +18,6 @@ namespace Pedal.Data.EntityTypeConfiguration
             Property(a => a.LastName)
                 .IsOptional()
                 .HasMaxLength(64);
-            Property(a => a.DateOfBirth)
-                .HasColumnAnnotation("Default", "4-4-1900");
             Property(a => a.Gender)
                 .IsOptional();
             Property(a => a.NationalId)
@@ -29,7 +27,7 @@ namespace Pedal.Data.EntityTypeConfiguration
             Property(a => a.DrivingLicense)
                 .IsOptional();
 
-            HasRequired(c => c.Address)
+            HasOptional(c => c.Address)
                 .WithMany(a => a.ApplicationUsers)
                 .HasForeignKey(c => c.AddressId);
         }

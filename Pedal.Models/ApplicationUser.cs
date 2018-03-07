@@ -23,8 +23,8 @@ namespace Pedal.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
-        public int AddressId { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+        public int? AddressId { get; set; }
         public Address Address { get; set; }
         public string NationalId { get; set; }
         public string PassportNumber { get; set; }

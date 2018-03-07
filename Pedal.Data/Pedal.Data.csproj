@@ -78,6 +78,14 @@
     <Compile Include="Migrations\201803072207159_AddedMoreDbRelation.Designer.cs">
       <DependentUpon>201803072207159_AddedMoreDbRelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803072328376_DateTimeErrorFixed.cs" />
+    <Compile Include="Migrations\201803072328376_DateTimeErrorFixed.Designer.cs">
+      <DependentUpon>201803072328376_DateTimeErrorFixed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803072334408_AddressErrorFixed.cs" />
+    <Compile Include="Migrations\201803072334408_AddressErrorFixed.Designer.cs">
+      <DependentUpon>201803072334408_AddressErrorFixed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -100,6 +108,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803072207159_AddedMoreDbRelation.resx">
       <DependentUpon>201803072207159_AddedMoreDbRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803072328376_DateTimeErrorFixed.resx">
+      <DependentUpon>201803072328376_DateTimeErrorFixed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803072334408_AddressErrorFixed.resx">
+      <DependentUpon>201803072334408_AddressErrorFixed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
