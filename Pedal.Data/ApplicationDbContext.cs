@@ -29,7 +29,7 @@ namespace Pedal.Data
         public DbSet<Cycle> Cycles { get; set; }
         public DbSet<ManagerLoginHistory> ManagerLoginHistories { get; set; }
         public DbSet<Store> Stores { get; set; }
-        public DbSet<UserAddress> UserAddresses { get; set; }
+        public DbSet<Address> UserAddresses { get; set; }
         public DbSet<Rent> Rents { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<CashMemo> CashMemos { get; set; }
