@@ -10,5 +10,14 @@ namespace Pedal.Data.EntityTypeConfiguration
 {
     class UserAddressConfiguration: EntityTypeConfiguration<UserAddress>
     {
+        public UserAddressConfiguration()
+        {
+            Property(a => a.Area)
+                .IsRequired();
+            Property(a => a.City)
+                .IsRequired();
+            Property(a => a.Country)
+                .IsRequired();
+        }
     }
 }

@@ -10,5 +10,10 @@ namespace Pedal.Data.EntityTypeConfiguration
 {
     class StoreConfiguration: EntityTypeConfiguration<Store>
     {
+        public StoreConfiguration()
+        {
+
+        }
+
     }
 }
