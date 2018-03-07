@@ -54,6 +54,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="EntityTypeConfiguration\AdminConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\BookingConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\BookingStatusTableConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\CashMemoConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\CompanyConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\CustomerConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\CycleConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\ManagerConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\ManagerLoginHistoryConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\RentConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\StoreConfiguration.cs" />
+    <Compile Include="EntityTypeConfiguration\UserAddressConfiguration.cs" />
     <Compile Include="Migrations\201803062225161_InitialMigration.cs" />
     <Compile Include="Migrations\201803062225161_InitialMigration.Designer.cs">
       <DependentUpon>201803062225161_InitialMigration.cs</DependentUpon>
