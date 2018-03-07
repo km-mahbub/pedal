@@ -24,6 +24,7 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .WithMany(a => a.Cycles)
                 .HasForeignKey(v => v.CompanyId)
                 .WillCascadeOnDelete(false);
+
             HasRequired(s => s.Store)
                 .WithMany(c => c.Cycles)
                 .HasForeignKey(f => f.StoreId)
