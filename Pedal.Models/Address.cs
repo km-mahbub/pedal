@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Pedal.Models
 {
-    public class UserAddress
+    public class Address
     {
-        public int UserAddressId { get; set; }
+        public int AddressId { get; set; }
         public string Area { get; set; }
         public string City { get; set; }
         public string Country { get; set; }

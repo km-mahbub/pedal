@@ -9,7 +9,8 @@ namespace Pedal.Models
     public class Store
     {
         public int StoreId { get; set; }
-        public string Location { get; set; }
+        public int AddressId { get; set; }
+        public Address Address { get; set; }
         public int TotalCycle { get; set; }
         public List<Cycle> Cycles { get; set; }
         public List<Rent> RentsFromThisStore { get; set; }

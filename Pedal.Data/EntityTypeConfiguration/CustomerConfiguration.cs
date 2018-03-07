@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 namespace Pedal.Data.EntityTypeConfiguration
 {
     class CustomerConfiguration: EntityTypeConfiguration<Customer>
-    { 
+    {
+        public CustomerConfiguration()
+        {
+            Property(c => c.)
+        }
     }
 }
