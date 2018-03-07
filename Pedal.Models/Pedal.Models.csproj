@@ -69,7 +69,7 @@
     <Compile Include="Rent.cs" />
     <Compile Include="Store.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="UserAddress.cs" />
+    <Compile Include="Address.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

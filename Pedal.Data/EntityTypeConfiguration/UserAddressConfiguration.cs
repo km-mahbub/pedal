@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Pedal.Data.EntityTypeConfiguration
 {
-    class UserAddressConfiguration: EntityTypeConfiguration<UserAddress>
+    class UserAddressConfiguration: EntityTypeConfiguration<Address>
     {
         public UserAddressConfiguration()
         {
