@@ -10,11 +10,16 @@ namespace Pedal.Models
     public class CashMemo
     {
         public int CashMemoId { get; set; }
-        public int RentId { get; set; }
-        public int RentedHour { get; set; }
-        public int StoreId { get; set; }
+        public int RentedHour { get; set; }        
         public DateTime CashReceiveTime { get; set; }
+
+        public int ManagerId { get; set; }
+        public Manager Manager { get; set; }
+
+        public int RentId { get; set; }
         public Rent Rent { get; set; }
+
+        public int StoreId { get; set; }
         public Store Store { get; set; }
     }
 }
