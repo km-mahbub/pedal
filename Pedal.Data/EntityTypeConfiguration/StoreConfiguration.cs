@@ -12,6 +12,12 @@ namespace Pedal.Data.EntityTypeConfiguration
     {
         public StoreConfiguration()
         {
+            Property(s => s.TotalCycle)
+                .HasColumnAnnotation("Default", 0);
+
+            HasRequired(s => s.Address)
+                .WithMany(a => a.Stores)
+                .HasForeignKey(d => d.AddressId);
 
         }
 

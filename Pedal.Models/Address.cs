@@ -12,5 +12,7 @@ namespace Pedal.Models
         public string Area { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public List<Store> Stores { get; set; }
+        public List<ApplicationUser> ApplicationUsers{ get; set; }
     }
 }
