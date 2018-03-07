@@ -13,5 +13,6 @@ namespace Pedal.Models
         public ApplicationUser Identity { get; set; }
         public Store Store { get; set; }
         public bool IsLoggedIn { get; set; }
+        public List<CashMemo> CashMemos { get; set; }
     }
 }
