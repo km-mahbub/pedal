@@ -20,9 +20,8 @@ namespace Pedal.Web.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Create()
         {
-            ViewBag.Message = "Your contact page.";
 
             return View();
         }

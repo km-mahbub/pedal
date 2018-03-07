@@ -5,40 +5,71 @@ using System.Text;
 using System.Threading.Tasks;
 using Pedal.Data;
 using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace Pedal.Repositories
 {
     public abstract class Repository<TEntity> where TEntity:class
     {
 
-        internal PedalDbContext _context = new PedalDbContext();
+        protected readonly DbContext Context;
 
-        public List<TEntity> GetAll()
+        public Repository(DbContext context)
         {
-            return _context.Set<TEntity>().ToList();
+            Context = context;
         }
 
-        public TEntity Get<TKey>(TKey id)
+        public TEntity Get<TKey> (TKey id)
         {
-            return _context.Set<TEntity>().Find(id);
+            // Here we are working with a DbContext, not PlutoContext. So we don't have DbSets 
+            // such as Courses or Authors, and we need to use the generic Set() method to access them.
+            return Context.Set<TEntity>().Find(id);
         }
 
-        public bool Insert(TEntity entity)
+        public IEnumerable<TEntity> GetAll()
         {
-            _context.Entry<TEntity>(entity).State = EntityState.Added;
-            return _context.SaveChanges() > 0;
+            // Note that here I've repeated Context.Set<TEntity>() in every method and this is causing
+            // too much noise. I could get a reference to the DbSet returned from this method in the 
+            // constructor and store it in a private field like _entities. This way, the implementation
+            // of our methods would be cleaner:
+            // 
+            // _entities.ToList();
+            // _entities.Where();
+            // _entities.SingleOrDefault();
+            // 
+            // I didn't change it because I wanted the code to look like the videos. But feel free to change
+            // this on your own.
+            return Context.Set<TEntity>().ToList();
         }
 
-        public bool Update(TEntity entity)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate)
         {
-            _context.Entry<TEntity>(entity).State = EntityState.Modified;
-            return _context.SaveChanges() > 0;
+            return Context.Set<TEntity>().Where(predicate);
         }
 
-        public bool Delete(TEntity entity)
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
-            _context.Entry<TEntity>(entity).State = EntityState.Deleted;
-            return _context.SaveChanges() > 0;
+            return Context.Set<TEntity>().SingleOrDefault(predicate);
+        }
+
+        public void Add(TEntity entity)
+        {
+            Context.Set<TEntity>().Add(entity);
+        }
+
+        public void AddRange(IEnumerable<TEntity> entities)
+        {
+            Context.Set<TEntity>().AddRange(entities);
+        }
+
+        public void Remove(TEntity entity)
+        {
+            Context.Set<TEntity>().Remove(entity);
+        }
+
+        public void RemoveRange(IEnumerable<TEntity> entities)
+        {
+            Context.Set<TEntity>().RemoveRange(entities);
         }
     }
 }
