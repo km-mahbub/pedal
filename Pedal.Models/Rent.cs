@@ -23,6 +23,7 @@ namespace Pedal.Models
         public Manager Manager { get; set; }
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
+        public bool IsDeleted { get; set; }
 
     }
 }

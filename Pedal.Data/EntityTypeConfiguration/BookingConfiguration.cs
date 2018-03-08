@@ -19,6 +19,8 @@ namespace Pedal.Data.EntityTypeConfiguration
             Property(c => c.BookingTrackId)
                 .IsRequired()
                 .HasMaxLength(255);
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
 
             HasRequired(c=>c.Store)
                 .WithMany(s=>s.Bookings)

@@ -13,6 +13,7 @@ namespace Pedal.Models
         public ApplicationUser Identity { get; set; }
         public Store Store { get; set; }
         public bool IsLoggedIn { get; set; }
+        public bool IsDeleted { get; set; }
         public List<CashMemo> CashMemos { get; set; }
         public List<ManagerLoginHistory> ManagerLoginHistory { get; set; }
         public List<Rent> Rents { get; set; }

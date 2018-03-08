@@ -30,5 +30,6 @@ namespace Pedal.Models
         public string PassportNumber { get; set; }
         public string DrivingLicense { get; set; }
         public Gender Gender { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

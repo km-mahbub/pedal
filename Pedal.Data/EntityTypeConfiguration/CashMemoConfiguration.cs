@@ -16,6 +16,8 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .IsRequired();
             Property(c => c.CashReceiveTime)
                 .IsRequired();
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
 
             HasRequired(m => m.Manager)
                 .WithMany(c => c.CashMemos)

@@ -11,5 +11,6 @@ namespace Pedal.Models
         public int BookingStatusTableId { get; set; }
         public Booking Booking { get; set; }
         public bool IsRented { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

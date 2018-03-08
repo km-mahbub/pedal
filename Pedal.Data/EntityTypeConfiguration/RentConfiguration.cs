@@ -18,6 +18,8 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .IsRequired();
             Property(c => c.RentedHour)
                 .HasColumnAnnotation("Default",0);
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
 
             HasRequired(c=>c.Cycle)
                 .WithMany(s=>s.Rents)
