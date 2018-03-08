@@ -14,6 +14,8 @@ namespace Pedal.Data.EntityTypeConfiguration
         {
             Property(m => m.IsLoggedIn)
                 .HasColumnAnnotation("Default", 0);
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
 
             HasRequired(s => s.Store)
                 .WithOptional(m => m.Manager);

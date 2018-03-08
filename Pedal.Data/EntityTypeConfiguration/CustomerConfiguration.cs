@@ -16,6 +16,8 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .HasColumnAnnotation("Default", 0);
             Property(c => c.TotalRentCount)
                 .HasColumnAnnotation("Default", 0);
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
         }
     }
 }

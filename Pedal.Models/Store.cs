@@ -18,5 +18,6 @@ namespace Pedal.Models
         public List<Booking> Bookings { get; set; }
         public List<CashMemo> CashMemos { get; set; }
         public Manager Manager { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

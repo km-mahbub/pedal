@@ -26,6 +26,8 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .IsOptional();
             Property(a => a.DrivingLicense)
                 .IsOptional();
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
 
             HasOptional(c => c.Address)
                 .WithMany(a => a.ApplicationUsers)

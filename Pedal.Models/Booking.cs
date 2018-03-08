@@ -21,5 +21,6 @@ namespace Pedal.Models
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public Rent Rent { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

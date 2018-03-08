@@ -13,5 +13,6 @@ namespace Pedal.Models
         public DateTime LogoutTime { get; set; }
         public int ManagerId { get; set; }
         public Manager Manager { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

@@ -18,6 +18,8 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .IsRequired();
             Property(a => a.Country)
                 .IsRequired();
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
         }
     }
 }
