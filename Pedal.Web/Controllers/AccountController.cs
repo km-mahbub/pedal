@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Pedal.Data;
 using Pedal.Models;
+using Pedal.Repositories;
+using Pedal.Repositories.Interfaces;
 using Pedal.Web.Models;
 
 namespace Pedal.Web.Controllers
@@ -19,6 +21,7 @@ namespace Pedal.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IUnitOfWork _unitOfWork = new UnitOfWork();
 
         public AccountController()
         {
@@ -167,6 +170,8 @@ namespace Pedal.Web.Controllers
                     //ApplicationDbContext _context = new ApplicationDbContext();
 
 
+                    _unitOfWork.CustomerRepository.Add(new Customer{ IdentityId = user.Id});
+                    _unitOfWork.Complete();
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

@@ -12,7 +12,6 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Pedal.Data;
 using Pedal.Models;
-using Pedal.Web.Models;
 
 namespace Pedal.Web
 {
