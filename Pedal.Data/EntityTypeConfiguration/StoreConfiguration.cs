@@ -14,6 +14,8 @@ namespace Pedal.Data.EntityTypeConfiguration
         {
             Property(s => s.TotalCycle)
                 .HasColumnAnnotation("Default", 0);
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
 
             HasRequired(s => s.Address)
                 .WithMany(a => a.Stores)

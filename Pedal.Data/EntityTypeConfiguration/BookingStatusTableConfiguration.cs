@@ -14,6 +14,8 @@ namespace Pedal.Data.EntityTypeConfiguration
         {
             Property(c => c.IsRented)
                 .IsRequired();
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
 
             HasRequired(c => c.Booking)
                 .WithRequiredDependent(s => s.BookingStatusTable);

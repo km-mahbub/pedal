@@ -24,5 +24,6 @@ namespace Pedal.Models
 
         public int StoreId { get; set; }
         public Store Store { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

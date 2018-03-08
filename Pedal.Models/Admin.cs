@@ -11,5 +11,6 @@ namespace Pedal.Models
         public int AdminId { get; set; }
         public string IdentityId { get; set; }
         public ApplicationUser Identity { get; set; }
+        public bool IsDeleted { get; set; }
     }
 }

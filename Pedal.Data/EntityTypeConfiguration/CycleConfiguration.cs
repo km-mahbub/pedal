@@ -18,6 +18,8 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .HasColumnAnnotation("Default", 0);
             Property(c => c.CycleType)
                 .IsRequired();
+            Property(a => a.IsDeleted)
+                .HasColumnAnnotation("Default", false);
 
 
             HasRequired(c => c.Company)
