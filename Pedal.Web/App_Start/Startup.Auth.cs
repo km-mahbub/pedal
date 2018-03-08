@@ -7,7 +7,6 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using Pedal.Data;
 using Pedal.Models;
-using Pedal.Web.Models;
 
 namespace Pedal.Web
 {

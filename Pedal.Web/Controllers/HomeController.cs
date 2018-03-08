@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Pedal.Repositories;
+using Pedal.Repositories.Interfaces;
 
 namespace Pedal.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public HomeController()
+        {
+            _unitOfWork = new UnitOfWork();
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var cycles = _unitOfWork.CycleRepository.GetAll();
+            return View(cycles);
         }
 
         public ActionResult About()
@@ -20,8 +30,9 @@ namespace Pedal.Web.Controllers
             return View();
         }
 
-        public ActionResult Create()
+        public ActionResult Contact()
         {
+            ViewBag.Message = "Your contact page.";
 
             return View();
         }

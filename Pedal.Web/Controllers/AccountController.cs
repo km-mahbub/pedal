@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Pedal.Models;
+using Pedal.Repositories;
+using Pedal.Repositories.Interfaces;
 using Pedal.Web.Models;
 
 namespace Pedal.Web.Controllers
@@ -18,6 +20,7 @@ namespace Pedal.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly IUnitOfWork _unitOfWork = new UnitOfWork();
 
         public AccountController()
         {
@@ -164,6 +167,8 @@ namespace Pedal.Web.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
+                    _unitOfWork.CustomerRepository.Add(new Customer{ IdentityId = user.Id});
+                    _unitOfWork.Complete();
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
