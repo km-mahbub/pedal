@@ -10,7 +10,6 @@ namespace Pedal.Models
     public class Cycle
     {
         public int CycleId { get; set; }
-        [Display(Name ="Status")]
         public CycleStatusType CycleStatusType { get; set; }
         public int RentedHour { get; set; }
         public CycleType CycleType { get; set; }
