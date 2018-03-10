@@ -10,6 +10,7 @@ using Pedal.Data;
 using Pedal.Models;
 using Pedal.Repositories.Interfaces;
 using Pedal.Repositories;
+using Pedal.Web.Models.ViewModels;
 
 namespace Pedal.Web.Controllers
 {
@@ -26,11 +27,6 @@ namespace Pedal.Web.Controllers
         public ActionResult Index()
         {
             
-
-
-
-
-            //var cycles = db.Cycles.Include(c => c.Company).Include(c => c.Store);
             return View(_unitOfWork.CycleRepository.GetAll());
         }
 
@@ -49,13 +45,21 @@ namespace Pedal.Web.Controllers
             return View(cycle);
         }
 
-        //// GET: Cycles/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.CompanyId = new SelectList(_unitOfWork.Companies, "CompanyId", "Name");
-        //    ViewBag.StoreId = new SelectList(_unitOfWork.Stores, "StoreId", "StoreId");
-        //    return View();
-        //}
+        // get: cycles/create
+        public Actionresult create()
+        {
+            var store = _unitOfWork.StoreRepository.GetAll();
+            var Company = _unitOfWork.CompanyRepository.GetAll();
+
+            var viewModel = new CycleViewModel
+            {
+                Companies = Company,
+                Stores = store
+
+
+            };
+            return view(CycleViewModel);
+        }
 
         //// POST: Cycles/Create
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 

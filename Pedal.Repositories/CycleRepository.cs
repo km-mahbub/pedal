@@ -25,5 +25,10 @@ namespace Pedal.Repositories
          
             return _context.Cycles.Include(c => c.Company).Include(c => c.Store);
         }
+
+        public CycleType Cycletype()
+        {
+            return 
+        }
     }
 }
