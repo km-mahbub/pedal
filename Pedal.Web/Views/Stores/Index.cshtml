@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Pedal.Models.Store>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Address.Area)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manager.IdentityId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalCycle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.Area)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Manager.IdentityId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCycle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.StoreId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.StoreId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.StoreId })
+        </td>
+    </tr>
+}
+
+</table>
