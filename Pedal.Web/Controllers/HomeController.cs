@@ -14,6 +14,7 @@ namespace Pedal.Web.Controllers
 
         public HomeController()
         {
+
             _unitOfWork = new UnitOfWork();
         }
 
