@@ -14,7 +14,7 @@ namespace Pedal.Repositories
 
         protected readonly DbContext Context;
 
-        public Repository(DbContext context)
+        protected Repository(DbContext context)
         {
             Context = context;
         }
