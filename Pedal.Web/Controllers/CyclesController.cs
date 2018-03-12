@@ -18,15 +18,15 @@ namespace Pedal.Web.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CyclesController()
+        public CyclesController(IUnitOfWork unitOfWork)
         {
-             _unitOfWork = new UnitOfWork();
+             _unitOfWork = unitOfWork;
         }
         // GET: Cycles
         public ActionResult Index()
         {
             
-            return View(_unitOfWork.CycleRepository.GetAll());
+            return View(_unitOfWork.Cycles.GetAll());
         }
 
         // GET: Cycles/Details/5
@@ -36,7 +36,7 @@ namespace Pedal.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cycle cycle = _unitOfWork.CycleRepository.Get(id);
+            Cycle cycle = _unitOfWork.Cycles.Get(id);
             if (cycle == null)
             {
                 return HttpNotFound();
@@ -52,8 +52,8 @@ namespace Pedal.Web.Controllers
             //var viewModel = new CycleViewModel
             //{
 
-            ViewBag.Companies = _unitOfWork.CompanyRepository.GetAll();
-                ViewBag.Stores = _unitOfWork.StoreRepository.GetAll();
+            ViewBag.Companies = _unitOfWork.Cycles.GetAll();
+                ViewBag.Stores = _unitOfWork.Stores.GetAll();
                 //Cycles = new Cycle()
            // };
             

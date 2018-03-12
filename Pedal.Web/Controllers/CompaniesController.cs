@@ -15,17 +15,17 @@ namespace Pedal.Web.Controllers
 {
     public class CompaniesController : Controller
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CompaniesController()
+        public CompaniesController(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Companies
         public ActionResult Index()
         {
-            return View(_unitOfWork.CompanyRepository.GetAll());
+            return View(_unitOfWork.Companies.GetAll());
         }
 
         // GET: Companies/Details/5
@@ -35,7 +35,7 @@ namespace Pedal.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = _unitOfWork.CompanyRepository.Get(id);
+            Company company = _unitOfWork.Companies.Get(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -58,7 +58,7 @@ namespace Pedal.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.CompanyRepository.Add(company);
+                _unitOfWork.Companies.Add(company);
                 _unitOfWork.Complete();
                 return RedirectToAction("Index");
             }
@@ -73,7 +73,7 @@ namespace Pedal.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = _unitOfWork.CompanyRepository.Get(id);
+            Company company = _unitOfWork.Companies.Get(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -90,7 +90,7 @@ namespace Pedal.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.CompanyRepository.Add(company);
+                _unitOfWork.Companies.Add(company);
                 _unitOfWork.Complete();
                 return RedirectToAction("Index");
             }
@@ -104,7 +104,7 @@ namespace Pedal.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = _unitOfWork.CompanyRepository.Get(id);
+            Company company = _unitOfWork.Companies.Get(id);
             if (company == null)
             {
                 return HttpNotFound();
@@ -117,8 +117,8 @@ namespace Pedal.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Company company = _unitOfWork.CompanyRepository.Get(id);
-            _unitOfWork.CompanyRepository.Remove(company);
+            Company company = _unitOfWork.Companies.Get(id);
+            _unitOfWork.Companies.Remove(company);
             _unitOfWork.Complete();
             return RedirectToAction("Index");
         }

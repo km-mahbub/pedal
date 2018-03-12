@@ -8,17 +8,17 @@ namespace Pedal.Repositories.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IAdminRepository AdminRepository { get; }
-        IBookingRepository BookingRepository { get; }
-        IBookingStatusTableRepository BookingStatusTableRepository { get; }
-        ICashMemoRepository CashMemoRepository { get; }
-        ICompanyRepository CompanyRepository{ get; }
-        ICustomerRepository CustomerRepository { get; }
-        ICycleRepository CycleRepository { get; }
-        IManagerRepository ManagerRepository { get; }
-        IRentRepository RentRepository { get; }
-        IStoreRepository StoreRepository { get; }
-        IAddressRepository AddressRepository { get; }
+        IAdminRepository Admins { get; }
+        IBookingRepository Bookings { get; }
+        IBookingStatusTableRepository BookingStatusTables { get; }
+        ICashMemoRepository CashMemos { get; }
+        ICompanyRepository Companies{ get; }
+        ICustomerRepository Customers { get; }
+        ICycleRepository Cycles { get; }
+        IManagerRepository Managers { get; }
+        IRentRepository Rents { get; }
+        IStoreRepository Stores { get; }
+        IAddressRepository Addresses { get; }
 
         int Complete();
     }

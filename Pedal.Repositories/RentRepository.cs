@@ -14,5 +14,6 @@ namespace Pedal.Repositories
         public RentRepository(ApplicationDbContext context) : base(context)
         {
         }
+        public ApplicationDbContext ApplicationDbContext => Context as ApplicationDbContext;
     }
 }

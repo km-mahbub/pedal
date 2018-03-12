@@ -12,16 +12,14 @@ namespace Pedal.Repositories
 {
     public class StoreRepository:Repository<Store>, IStoreRepository
     {
-        private readonly ApplicationDbContext _context;
-
         public StoreRepository(ApplicationDbContext context) : base(context)
         {
-            _context = context;
         }
+        public ApplicationDbContext ApplicationDbContext => Context as ApplicationDbContext;
 
         public override IEnumerable<Store> GetAll()
         {
-            return _context.Stores.Include(s => s.Address).Include(s => s.Manager);
+            return ApplicationDbContext.Stores.Include(s => s.Address).Include(s => s.Manager);
         }
     }
 }

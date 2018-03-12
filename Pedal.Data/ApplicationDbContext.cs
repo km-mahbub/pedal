@@ -9,11 +9,7 @@ using Pedal.Data.EntityTypeConfiguration;
 using Pedal.Models;
 
 namespace Pedal.Data
-
 {
-    
-
-
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()

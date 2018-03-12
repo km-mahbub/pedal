@@ -12,15 +12,15 @@ namespace Pedal.Web.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController()
+        public HomeController(IUnitOfWork unitOfWork)
         {
 
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = unitOfWork;
         }
 
         public ActionResult Index()
         {
-            var cycles = _unitOfWork.CycleRepository.GetAll();
+            var cycles = _unitOfWork.Cycles.GetAll();
             return View(cycles);
         }
 

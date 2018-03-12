@@ -18,16 +18,16 @@ namespace Pedal.Web.Controllers
         private readonly IUnitOfWork _unitOfWork;
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public StoresController()
+        public StoresController(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork();
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Stores
         public ActionResult Index()
         {
-            var stores = _unitOfWork.StoreRepository.GetAll();
-            return View(stores.ToList());
+            var stores = _unitOfWork.Stores.GetAll();
+            return View(stores);
         }
 
         // GET: Stores/Details/5
@@ -37,7 +37,7 @@ namespace Pedal.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Store store = _unitOfWork.StoreRepository.Get(id);
+            Store store = _unitOfWork.Stores.Get(id);
             if (store == null)
             {
                 return HttpNotFound();

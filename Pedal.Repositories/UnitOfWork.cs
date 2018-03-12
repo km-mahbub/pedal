@@ -12,34 +12,34 @@ namespace Pedal.Repositories
     {
         private readonly ApplicationDbContext _context;
 
-        public UnitOfWork()
+        public UnitOfWork(ApplicationDbContext context)
         {
-            _context = new ApplicationDbContext();
-            AdminRepository = new AdminRepository(_context);
-            BookingRepository = new BookingRepository(_context);
-            BookingStatusTableRepository = new BookingStatusTableRepository(_context);
-            CashMemoRepository = new CashMemoRepository(_context);
-            CompanyRepository = new CompanyRepository(_context);
-            CustomerRepository = new CustomerRepository(_context);
-            CycleRepository = new CycleRepository(_context);
-            ManagerRepository = new ManagerRepository(_context);
-            RentRepository = new RentRepository(_context);
-            StoreRepository = new StoreRepository(_context);
-            AddressRepository = new AddressRepository(_context);
+            _context = context;
+            Admins = new AdminRepository(_context);
+            Bookings = new BookingRepository(_context);
+            BookingStatusTables = new BookingStatusTableRepository(_context);
+            CashMemos = new CashMemoRepository(_context);
+            Companies = new CompanyRepository(_context);
+            Customers = new CustomerRepository(_context);
+            Cycles = new CycleRepository(_context);
+            Managers = new ManagerRepository(_context);
+            Rents = new RentRepository(_context);
+            Stores = new StoreRepository(_context);
+            Addresses = new AddressRepository(_context);
         }
 
 
-        public IAdminRepository AdminRepository { get; }
-        public IBookingRepository BookingRepository { get; }
-        public IBookingStatusTableRepository BookingStatusTableRepository { get; }
-        public ICashMemoRepository CashMemoRepository { get; }
-        public ICompanyRepository CompanyRepository { get; }
-        public ICustomerRepository CustomerRepository { get; }
-        public ICycleRepository CycleRepository { get; }
-        public IManagerRepository ManagerRepository { get; }
-        public IRentRepository RentRepository { get; }
-        public IStoreRepository StoreRepository { get; }
-        public IAddressRepository AddressRepository { get; }
+        public IAdminRepository Admins { get; }
+        public IBookingRepository Bookings { get; }
+        public IBookingStatusTableRepository BookingStatusTables { get; }
+        public ICashMemoRepository CashMemos { get; }
+        public ICompanyRepository Companies { get; }
+        public ICustomerRepository Customers { get; }
+        public ICycleRepository Cycles { get; }
+        public IManagerRepository Managers { get; }
+        public IRentRepository Rents { get; }
+        public IStoreRepository Stores { get; }
+        public IAddressRepository Addresses { get; }
 
         public int Complete()
         {
