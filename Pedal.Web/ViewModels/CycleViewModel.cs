@@ -11,6 +11,5 @@ namespace Pedal.Web.ViewModels
         public Cycle Cycle { get; set; }
         public IEnumerable<Company> Companies { get; set; }
         public IEnumerable<Store> Stores { get; set; }
-
     }
 }

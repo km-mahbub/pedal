@@ -15,17 +15,18 @@ namespace Pedal.Web.Controllers
 {
     public class StoresController : Controller
     {
-        private IUnitOfWork _context;
+        private readonly IUnitOfWork _unitOfWork;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public StoresController()
         {
-            _context = new UnitOfWork();
+            _unitOfWork = new UnitOfWork();
         }
 
         // GET: Stores
         public ActionResult Index()
         {
-            var stores = db.Stores.Include(s => s.Address).Include(s => s.Manager);
+            var stores = _unitOfWork.StoreRepository.GetAll();
             return View(stores.ToList());
         }
 
@@ -36,7 +37,7 @@ namespace Pedal.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Store store = db.Stores.Find(id);
+            Store store = _unitOfWork.StoreRepository.Get(id);
             if (store == null)
             {
                 return HttpNotFound();
@@ -47,8 +48,8 @@ namespace Pedal.Web.Controllers
         // GET: Stores/Create
         public ActionResult Create()
         {
-            ViewBag.AddressId = new SelectList(db.UserAddresses, "AddressId", "Area");
-            ViewBag.StoreId = new SelectList(db.Managers, "ManagerId", "IdentityId");
+            //ViewBag.AddressId = new SelectList(_unitOfWork.AddressRepository, "AddressId", "Area");
+            //ViewBag.StoreId = new SelectList(db.Managers, "ManagerId", "IdentityId");
             return View();
         }
 
@@ -66,8 +67,8 @@ namespace Pedal.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AddressId = new SelectList(db.UserAddresses, "AddressId", "Area", store.AddressId);
-            ViewBag.StoreId = new SelectList(db.Managers, "ManagerId", "IdentityId", store.StoreId);
+            //ViewBag.AddressId = new SelectList(db.UserAddresses, "AddressId", "Area", store.AddressId);
+            //ViewBag.StoreId = new SelectList(db.Managers, "ManagerId", "IdentityId", store.StoreId);
             return View(store);
         }
 
@@ -83,8 +84,8 @@ namespace Pedal.Web.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AddressId = new SelectList(db.UserAddresses, "AddressId", "Area", store.AddressId);
-            ViewBag.StoreId = new SelectList(db.Managers, "ManagerId", "IdentityId", store.StoreId);
+            //ViewBag.AddressId = new SelectList(db.UserAddresses, "AddressId", "Area", store.AddressId);
+            //ViewBag.StoreId = new SelectList(db.Managers, "ManagerId", "IdentityId", store.StoreId);
             return View(store);
         }
 
@@ -101,8 +102,8 @@ namespace Pedal.Web.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AddressId = new SelectList(db.UserAddresses, "AddressId", "Area", store.AddressId);
-            ViewBag.StoreId = new SelectList(db.Managers, "ManagerId", "IdentityId", store.StoreId);
+            //ViewBag.AddressId = new SelectList(db.UserAddresses, "AddressId", "Area", store.AddressId);
+            //ViewBag.StoreId = new SelectList(db.Managers, "ManagerId", "IdentityId", store.StoreId);
             return View(store);
         }
 

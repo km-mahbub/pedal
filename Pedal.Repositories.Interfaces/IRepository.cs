@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -13,7 +14,7 @@ namespace Pedal.Repositories.Interfaces
          IEnumerable<TEntity> GetAll();
          IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 
-         // This method was not in the videos, but I thought it would be useful to add.
+        
          TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 
          void Add(TEntity entity);
@@ -21,6 +22,6 @@ namespace Pedal.Repositories.Interfaces
 
          void Remove(TEntity entity);
          void RemoveRange(IEnumerable<TEntity> entities);
-    }
+     }
     
 }

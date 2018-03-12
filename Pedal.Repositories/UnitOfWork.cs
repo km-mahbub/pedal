@@ -25,6 +25,7 @@ namespace Pedal.Repositories
             ManagerRepository = new ManagerRepository(_context);
             RentRepository = new RentRepository(_context);
             StoreRepository = new StoreRepository(_context);
+            AddressRepository = new AddressRepository(_context);
         }
 
 
@@ -38,6 +39,7 @@ namespace Pedal.Repositories
         public IManagerRepository ManagerRepository { get; }
         public IRentRepository RentRepository { get; }
         public IStoreRepository StoreRepository { get; }
+        public IAddressRepository AddressRepository { get; }
 
         public int Complete()
         {

@@ -18,6 +18,7 @@ namespace Pedal.Repositories.Interfaces
         IManagerRepository ManagerRepository { get; }
         IRentRepository RentRepository { get; }
         IStoreRepository StoreRepository { get; }
+        IAddressRepository AddressRepository { get; }
 
         int Complete();
     }
