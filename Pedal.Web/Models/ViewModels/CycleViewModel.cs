@@ -21,5 +21,7 @@ namespace Pedal.Web.Models.ViewModels
         public IEnumerable<Store> Stores { get; set; }
         [Display(Name = "Select Status")]
         public CycleStatusType CycleStatusType { get; set; }
+        public object Customer { get; internal set; }
+        public CycleViewModel Cycles { get; internal set; }
     }
 }

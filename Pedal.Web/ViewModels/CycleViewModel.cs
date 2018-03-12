@@ -8,8 +8,12 @@ namespace Pedal.Web.ViewModels
 {
     public class CycleViewModel
     {
-        public Cycle Cycle { get; set; }
+
+        public Cycle Cycles { get; set; }
         public IEnumerable<Company> Companies { get; set; }
         public IEnumerable<Store> Stores { get; set; }
+        
+        
+
     }
 }

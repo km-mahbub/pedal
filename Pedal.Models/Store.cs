@@ -10,6 +10,7 @@ namespace Pedal.Models
     {
         public int StoreId { get; set; }
         public int AddressId { get; set; }
+        public String Name { get; set; }
         public Address Address { get; set; }
         public int TotalCycle { get; set; }
         public List<Cycle> Cycles { get; set; }

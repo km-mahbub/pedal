@@ -94,6 +94,10 @@
     <Compile Include="Migrations\201803082216399_Seeding.Designer.cs">
       <DependentUpon>201803082216399_Seeding.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803121558153_StoreName.cs" />
+    <Compile Include="Migrations\201803121558153_StoreName.Designer.cs">
+      <DependentUpon>201803121558153_StoreName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -128,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803082216399_Seeding.resx">
       <DependentUpon>201803082216399_Seeding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803121558153_StoreName.resx">
+      <DependentUpon>201803121558153_StoreName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

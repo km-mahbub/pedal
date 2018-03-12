@@ -1,4 +1,4 @@
-﻿@model Pedal.Models.Cycle
+﻿@model Pedal.Web.ViewModels.CycleViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -15,55 +15,40 @@
         <h4>Cycle</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+     
         <div class="form-group">
-            @Html.LabelFor(model => model.CycleStatusType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Cycles.CycleType, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.CycleStatusType, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CycleStatusType, "", new { @class = "text-danger" })
+               
+                @Html.EnumDropDownListFor(model => model.Cycles.CycleType,  "Select Cycle Type",  new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RentedHour, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model=>model.Cycles.CompanyId, "CompanyId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.RentedHour, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RentedHour, "", new { @class = "text-danger" })
+                @Html.DropDownList("CompanyId", new SelectList(Model.Companies,"CompanyId","Name"), htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model=>model.Cycles.CompanyId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CycleType, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Cycles.StoreId, "StoreId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.CycleType, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CycleType, "", new { @class = "text-danger" })
+                @Html.DropDownList("SotreId", new SelectList(Model.Stores, "StoreId","Name"), new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(mode=>Model.Store, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CompanyId, "CompanyId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CompanyId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CompanyId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @*<div>
+            @Html.LabelFor(ViewBag=>ViewBag.Companies,"Store name", htmlAttributes:new { @class="control-lable col-MulticastDelegate-2"})
+            <div>
+                @Html.DropDownList("sotre", new SelectList(Model.Companies,"ComapanyId","Name"))
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StoreId, "StoreId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("StoreId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StoreId, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div*@>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.IsDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsDeleted)
-                    @Html.ValidationMessageFor(model => model.IsDeleted, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
+      
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

@@ -17,6 +17,9 @@ namespace Pedal.Data.EntityTypeConfiguration
             Property(a => a.IsDeleted)
                 .HasColumnAnnotation("Default", false);
 
+            Property(s => s.Name)
+                .IsRequired();
+
             HasRequired(s => s.Address)
                 .WithMany(a => a.Stores)
                 .HasForeignKey(d => d.AddressId);
