@@ -49,16 +49,16 @@ namespace Pedal.Web.Controllers
         {
             //Stores = _unitOfWork.StoreRepository.GetAll();
             //Companies = _unitOfWork.CompanyRepository.GetAll();
-            var viewModel = new CycleViewModel
-            {
-               
-                Companies = _unitOfWork.CompanyRepository.GetAll(),
-                Stores = _unitOfWork.StoreRepository.GetAll(),
-                Cycles = new Cycle()
-            };
+            //var viewModel = new CycleViewModel
+            //{
+
+            ViewBag.Companies = _unitOfWork.CompanyRepository.GetAll();
+                ViewBag.Stores = _unitOfWork.StoreRepository.GetAll();
+                //Cycles = new Cycle()
+           // };
             
             
-            return View(viewModel);
+            return View();
         }
 
         // POST: Cycles/Create
@@ -66,23 +66,23 @@ namespace Pedal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Cycle cycle)
+        public ActionResult Create( CycleViewModel NewCycle)
         {
 
 
 
+            ViewBag.Test = NewCycle;
 
-
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.CycleRepository.Add(cycle);
-                _unitOfWork.Complete();
-                return RedirectToAction("Index");
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    _unitOfWork.CycleRepository.Add(cycle);
+            //    _unitOfWork.Complete();
+            //    //return RedirectToAction("Index");
+            //}
 
             //ViewBag.CompanyId = new SelectList(_unitOfWork.Companies, "CompanyId", "Name", cycle.CompanyId);
             //ViewBag.StoreId = new SelectList(_unitOfWork.Stores, "StoreId", "StoreId", cycle.StoreId);
-            return View(cycle);
+           return View("View");
         }
 
         //// GET: Cycles/Edit/5
