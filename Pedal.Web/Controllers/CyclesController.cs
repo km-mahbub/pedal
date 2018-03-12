@@ -10,7 +10,7 @@ using Pedal.Data;
 using Pedal.Models;
 using Pedal.Repositories.Interfaces;
 using Pedal.Repositories;
-using Pedal.Web.Models.ViewModels;
+using Pedal.Web.ViewModels;
 
 namespace Pedal.Web.Controllers
 {
@@ -20,8 +20,7 @@ namespace Pedal.Web.Controllers
 
         public CyclesController()
         {
-
-            _unitOfWork = new UnitOfWork();
+             _unitOfWork = new UnitOfWork();
         }
         // GET: Cycles
         public ActionResult Index()
@@ -46,39 +45,45 @@ namespace Pedal.Web.Controllers
         }
 
         // get: cycles/create
-        public Actionresult create()
+        public ActionResult Create()
         {
-            var store = _unitOfWork.StoreRepository.GetAll();
-            var Company = _unitOfWork.CompanyRepository.GetAll();
-
+            //Stores = _unitOfWork.StoreRepository.GetAll();
+            //Companies = _unitOfWork.CompanyRepository.GetAll();
             var viewModel = new CycleViewModel
             {
-                Companies = Company,
-                Stores = store
-
-
+               
+                Companies = _unitOfWork.CompanyRepository.GetAll(),
+                Stores = _unitOfWork.StoreRepository.GetAll(),
+                Cycles = new Cycle()
             };
-            return view(CycleViewModel);
+            
+            
+            return View(viewModel);
         }
 
-        //// POST: Cycles/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "CycleId,CycleStatusType,RentedHour,CycleType,CompanyId,StoreId,IsDeleted")] Cycle cycle)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _unitOfWork.Cycles.Add(cycle);
-        //        _unitOfWork.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
+        // POST: Cycles/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create( Cycle cycle)
+        {
 
-        //    ViewBag.CompanyId = new SelectList(_unitOfWork.Companies, "CompanyId", "Name", cycle.CompanyId);
-        //    ViewBag.StoreId = new SelectList(_unitOfWork.Stores, "StoreId", "StoreId", cycle.StoreId);
-        //    return View(cycle);
-        //}
+
+
+
+
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.CycleRepository.Add(cycle);
+                _unitOfWork.Complete();
+                return RedirectToAction("Index");
+            }
+
+            //ViewBag.CompanyId = new SelectList(_unitOfWork.Companies, "CompanyId", "Name", cycle.CompanyId);
+            //ViewBag.StoreId = new SelectList(_unitOfWork.Stores, "StoreId", "StoreId", cycle.StoreId);
+            return View(cycle);
+        }
 
         //// GET: Cycles/Edit/5
         //public ActionResult Edit(int? id)
