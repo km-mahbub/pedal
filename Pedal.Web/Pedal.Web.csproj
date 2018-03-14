@@ -243,6 +243,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\RentController.cs" />
+    <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -330,6 +331,7 @@
     <Folder Include="Views\Cycle\" />
     <Folder Include="Views\Manager\" />
     <Folder Include="Views\Rent\" />
+    <Folder Include="Views\Store\" />
     <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
