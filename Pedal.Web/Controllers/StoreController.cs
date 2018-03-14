@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Pedal.Models;
+using Pedal.Web.Models.ViewModels;
 
 namespace Pedal.Web.Controllers
 {
@@ -21,79 +23,157 @@ namespace Pedal.Web.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            return View();
+            var stores = _unitOfWork.Stores.GetAll();
+            return View(stores);
         }
 
         // GET: Store/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var store = _unitOfWork.Stores.Get(id);
+            store.Address = _unitOfWork.Addresses.Get(store.AddressId);
+            if (store != null)
+            {
+                return View(store);
+            }
+
+            return HttpNotFound();
         }
 
         // GET: Store/Create
         public ActionResult Create()
         {
-            return View();
+            var CreateStore = new StoreViewModel();
+            return View(CreateStore);
         }
 
         // POST: Store/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(StoreViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                var address = new Address
+                {
+                    Area = model.Area,
+                    City = model.City,
+                    Country = model.Country,
+                    Lat = model.Lat,
+                    Lon = model.Lon
+                };
+                _unitOfWork.Addresses.Add(address);
+                _unitOfWork.Complete();
+
+
+                var store = new Store
+                {
+                    Name = model.Name,
+                    TotalCycle = 0,
+                    AddressId = 2
+
+                };
+
+                _unitOfWork.Stores.Add(store);
+                _unitOfWork.Complete();
+
+
+
+
 
                 return RedirectToAction("Index");
             }
-            catch
+            else
             {
                 return View();
             }
+           
+            
         }
 
         // GET: Store/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var store = _unitOfWork.Stores.Get(id);
+            store.Address = _unitOfWork.Addresses.Get(store.AddressId);
+            if (store != null)
+            {
+                return View(store);
+            }
+
+            return RedirectToAction("Index");
         }
 
         // POST: Store/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Store store)
         {
-            try
+
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                var storetoupdate = _unitOfWork.Stores.Get(id);
+                storetoupdate.Address = _unitOfWork.Addresses.Get(storetoupdate.AddressId);
+
+                storetoupdate.Address.Area = store.Address.Area;
+                storetoupdate.Address.City = store.Address.City;
+                storetoupdate.Address.Country = store.Address.Country;
+                storetoupdate.Address.Lat = store.Address.Lat;
+                storetoupdate.Address.Lon = store.Address.Lon;
+                
+                
+                _unitOfWork.Complete();
+
+
+
+                storetoupdate.Name = store.Name;
+                storetoupdate.TotalCycle = store.TotalCycle;
+
+                
+                    
+                _unitOfWork.Complete();
+
+
+
+
 
                 return RedirectToAction("Index");
+                
             }
-            catch
+            else
             {
-                return View();
+                return RedirectToAction("Edit","Store");
             }
         }
 
         // GET: Store/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var store = _unitOfWork.Stores.Get(id);
+            store.Address = _unitOfWork.Addresses.Get(store.AddressId);
+            if (store != null)
+            {
+                return View(store);
+            }
+
+            return HttpNotFound();
         }
 
         // POST: Store/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Store store)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add delete logic here
+                var storetoupdate = _unitOfWork.Stores.Get(id);
+
+                storetoupdate.IsDeleted = true;
+                _unitOfWork.Complete();
+                
 
                 return RedirectToAction("Index");
+
             }
-            catch
-            {
-                return View();
-            }
+
+            return HttpNotFound();
         }
     }
 }
