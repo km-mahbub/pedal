@@ -13,7 +13,7 @@ namespace Pedal.Web
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            CreateRolesandUsers();
+            //CreateRolesandUsers();
         }
 
         // In this method we will create default User roles and Admin user for login   
