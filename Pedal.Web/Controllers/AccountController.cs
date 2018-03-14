@@ -21,12 +21,13 @@ namespace Pedal.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private readonly IUnitOfWork _unitOfWork;
+        //private readonly IUnitOfWork _unitOfWork = new UnitOfWork();
 
-        public AccountController(IUnitOfWork unitOfWork)
+        public AccountController()
         {
-            _unitOfWork = unitOfWork;
+
         }
+        
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
@@ -171,8 +172,8 @@ namespace Pedal.Web.Controllers
                     //ApplicationDbContext _context = new ApplicationDbContext();
 
 
-                    _unitOfWork.Customers.Add(new Customer{ IdentityId = user.Id});
-                    _unitOfWork.Complete();
+                    //_unitOfWork.Customers.Add(new Customer{ IdentityId = user.Id});
+                    //_unitOfWork.Complete();
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

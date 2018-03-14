@@ -98,6 +98,14 @@
     <Compile Include="Migrations\201803121558153_StoreName.Designer.cs">
       <DependentUpon>201803121558153_StoreName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803141617288_AddedLatLon.cs" />
+    <Compile Include="Migrations\201803141617288_AddedLatLon.Designer.cs">
+      <DependentUpon>201803141617288_AddedLatLon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803141620229_AddedTrackIDInRentTable.cs" />
+    <Compile Include="Migrations\201803141620229_AddedTrackIDInRentTable.Designer.cs">
+      <DependentUpon>201803141620229_AddedTrackIDInRentTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -135,6 +143,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803121558153_StoreName.resx">
       <DependentUpon>201803121558153_StoreName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803141617288_AddedLatLon.resx">
+      <DependentUpon>201803141617288_AddedLatLon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803141620229_AddedTrackIDInRentTable.resx">
+      <DependentUpon>201803141620229_AddedTrackIDInRentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

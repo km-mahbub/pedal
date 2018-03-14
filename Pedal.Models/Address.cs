@@ -9,6 +9,8 @@ namespace Pedal.Models
     public class Address
     {
         public int AddressId { get; set; }
+        public Double Lat { get; set; }
+        public Double Lon { get; set; }
         public string Area { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
