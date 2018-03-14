@@ -86,11 +86,13 @@ namespace Pedal.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompanyId,Name,IsDeleted")] Company company)
+        public ActionResult Edit(int id, Company company)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Companies.Add(company);
+                //_unitOfWork.Companies.Add(company);
+                var companytoupdate =_unitOfWork.Companies.Get(id);
+                companytoupdate.Name = company.Name;
                 _unitOfWork.Complete();
                 return RedirectToAction("Index");
             }
@@ -118,7 +120,8 @@ namespace Pedal.Web.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Company company = _unitOfWork.Companies.Get(id);
-            _unitOfWork.Companies.Remove(company);
+            //_unitOfWork.Companies.Remove(company);
+            company.IsDeleted = true;
             _unitOfWork.Complete();
             return RedirectToAction("Index");
         }
