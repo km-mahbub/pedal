@@ -28,6 +28,10 @@ namespace Pedal.Repositories
             return ApplicationDbContext.Cycles.Include(c => c.Company).Include(c => c.Store);
         }
 
-        
+        public IEnumerable<Cycle> GetCycleByStoreId(int id)
+        {
+            return ApplicationDbContext.Cycles.Include(c => c.Company).Include(c => c.Store).Where(s => s.StoreId == id).Where(c => c.IsDeleted != true).Where(c => c.CycleStatusType == CycleStatusType.Available);
+        }
+
     }
 }
