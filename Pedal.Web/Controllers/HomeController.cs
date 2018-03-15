@@ -74,7 +74,5 @@ namespace Pedal.Web.Controllers
             }
             return false;
         }
-
-
     }
 }
