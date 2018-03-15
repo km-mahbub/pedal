@@ -1,4 +1,5 @@
-﻿using Pedal.Repositories.Interfaces;
+﻿using Pedal.Models;
+using Pedal.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,35 +19,72 @@ namespace Pedal.Web.Controllers
         // GET: Cycle
         public ActionResult Index()
         {
-            return View();
+            return View(_unitOfWork.Cycles.GetAllWithDetails());
         }
 
         // GET: Cycle/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var cycle = _unitOfWork.Cycles.GetCycleWithDetails(id);
+            if (cycle != null)
+            {
+                return View(cycle);
+            }
+            return HttpNotFound();
+
         }
 
         // GET: Cycle/Create
         public ActionResult Create()
         {
+
+            var Stores = _unitOfWork.Stores.GetAll();
+            var Companies = _unitOfWork.Companies.GetAll();
+            //var StoreList = new List<SelectListItem>();
+            //var CompanyList = new List<SelectListItem>();
+
+
+            //foreach (var item in Stores)
+            //{
+            //    StoreList.Add(new SelectListItem
+            //    {
+            //        Text = item.Name,
+            //        Value = item.StoreId.ToString()
+            //    });
+
+            //}
+            //foreach (var item in Companies)
+            //{
+            //    CompanyList.Add(new SelectListItem
+            //    {
+            //        Text = item.Name,
+            //        Value = item.CompanyId.ToString()
+            //    });
+
+            //}
+
+            ViewBag.StoreList = Stores;
+            ViewBag.CompanyList = Companies;
+
+
             return View();
         }
 
         // POST: Cycle/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Cycle cycle)
         {
-            try
-            {
-                // TODO: Add insert logic here
 
+            if (ModelState.IsValid)
+            {
+
+                _unitOfWork.Cycles.Add(cycle);
+                _unitOfWork.Complete();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View("text");
+
         }
 
         // GET: Cycle/Edit/5

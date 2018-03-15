@@ -24,6 +24,11 @@ namespace Pedal.Repositories
             return ApplicationDbContext.Cycles.Include(c => c.Company).Include(c => c.Store);
         }
 
+        public IEnumerable<Cycle> GetAllWithDetails()
+        {
+            return ApplicationDbContext.Cycles.Include(c => c.Company).Include(c => c.Store);
+        }
+
         
     }
 }
