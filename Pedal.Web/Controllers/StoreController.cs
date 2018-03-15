@@ -35,6 +35,7 @@ namespace Pedal.Web.Controllers
 
             StoreViewModel storeView = new StoreViewModel
             {
+                StoreId = id,
                 Name = store.Name,
                 TotalCycle = store.TotalCycle,
                 Lat = address.Lat,
@@ -79,8 +80,8 @@ namespace Pedal.Web.Controllers
                 var store = new Store
                 {
                     Name = model.Name,
-                    TotalCycle = 0,
-                    AddressId = 2
+                    TotalCycle = model.TotalCycle,
+                    AddressId = address.AddressId
 
                 };
 

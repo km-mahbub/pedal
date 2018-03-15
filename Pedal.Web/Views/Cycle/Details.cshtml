@@ -12,7 +12,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Company.Name)
+            Company Name
         </dt>
 
         <dd>
@@ -20,31 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Store.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Store.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CycleStatusType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CycleStatusType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RentedHour)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RentedHour)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CycleType)
+            Cycle Type
         </dt>
 
         <dd>
@@ -52,12 +28,30 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
+            Store Name
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
+            @Html.DisplayFor(model => model.Store.Name)
         </dd>
+
+        <dt>
+            Cycle Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CycleStatusType)
+        </dd>
+
+        <dt>
+            Total Rented Time
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RentedHour) Hours
+        </dd>
+
+
 
     </dl>
 </div>

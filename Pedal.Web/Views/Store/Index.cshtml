@@ -9,7 +9,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-striped" id="tdata">
+    <thead class="thead-inverse">
     <tr>
 
         <th>
@@ -24,29 +25,45 @@
 
         <th></th>
     </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
 
-@foreach (var item in Model) {
-    <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCycle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address.Area) |
+                @Html.DisplayFor(modelItem => item.Address.City) |
+                @Html.DisplayFor(modelItem => item.Address.Country)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalCycle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address.Area) |
-            @Html.DisplayFor(modelItem => item.Address.City) |
-            @Html.DisplayFor(modelItem => item.Address.Country)
-        </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.StoreId }) |*@
+                @Html.ActionLink("Go To Store", "Details", new { id = item.StoreId })
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.StoreId })*@
+            </td>
+        </tr>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.StoreId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.StoreId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.StoreId })
-        </td>
-    </tr>
-   
-}
+    }
+    </tbody>
+
+        
 
 </table>
+
+
+<script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tdata').DataTable();
+    })
+</script>
