@@ -18,8 +18,10 @@ namespace Pedal.Models
         public string CustomerId { get; set; }
 
         public int RentId { get; set; }
+        public Rent Rent { get; set; }
 
         public int StoreId { get; set; }
+        public Store Store { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

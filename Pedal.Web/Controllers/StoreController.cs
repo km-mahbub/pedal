@@ -11,8 +11,7 @@ namespace Pedal.Web.Controllers
 {
     public class StoreController : Controller
     {
-
-        IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         public StoreController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -23,9 +22,9 @@ namespace Pedal.Web.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            var store = _unitOfWork.Stores.GetAll();
+            var storeList = _unitOfWork.Stores.GetStoresWithAddress();
 
-            return View(store);
+            return View(storeList);
         }
 
         // GET: Store/Details/5

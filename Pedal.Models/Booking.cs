@@ -11,14 +11,18 @@ namespace Pedal.Models
     {
         public int BookingId { get; set; }
         public int StoreId { get; set; }
+        public Store Store { get; set; }
         public DateTime BookingTime { get; set; }
         public bool BookingStatus { get; set; }
+        public int BookingStatusTableId { get; set; }
         public BookingStatusTable BookingStatusTable { get; set; }
         public string BookingTrackId { get; set; }
         public int CycleId { get; set; }
+        public Cycle Cycle { get; set; }
 
         public string CustomerId { get; set; }
-        public int? RentId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+        
         public bool IsDeleted { get; set; }
     }
 }

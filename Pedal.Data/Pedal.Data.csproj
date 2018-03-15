@@ -72,6 +72,14 @@
     <Compile Include="Migrations\201803151449557_fixingDatanase.Designer.cs">
       <DependentUpon>201803151449557_fixingDatanase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803151733065_RemovedFK.cs" />
+    <Compile Include="Migrations\201803151733065_RemovedFK.Designer.cs">
+      <DependentUpon>201803151733065_RemovedFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201803151743553_AddedFk.cs" />
+    <Compile Include="Migrations\201803151743553_AddedFk.Designer.cs">
+      <DependentUpon>201803151743553_AddedFk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +99,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803151449557_fixingDatanase.resx">
       <DependentUpon>201803151449557_fixingDatanase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803151733065_RemovedFK.resx">
+      <DependentUpon>201803151733065_RemovedFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803151743553_AddedFk.resx">
+      <DependentUpon>201803151743553_AddedFk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

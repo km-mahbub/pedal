@@ -27,6 +27,7 @@ namespace Pedal.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfBirth { get; set; }
         public int? AddressId { get; set; }
+        public Address Address { get; set; }
         public string NationalId { get; set; }
         public string PassportNumber { get; set; }
         public string DrivingLicense { get; set; }
@@ -35,6 +36,7 @@ namespace Pedal.Models
         public int TotalRentCount { get; set; }
         public bool IsDeleted { get; set; }
         public int StoreId { get; set; }
+        public Store Store { get; set; }
 
     }
 }

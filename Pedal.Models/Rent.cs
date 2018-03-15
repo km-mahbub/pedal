@@ -10,9 +10,11 @@ namespace Pedal.Models
     {
         public int RentId { get; set; }
         public int CycleId { get; set; }
+        public Cycle Cycle { get; set; }
         public int RentedHour { get; set; }
         public DateTime RentedTime { get; set; }
         public DateTime? ReturnTime { get; set; }
+        public int? BookingId { get; set; }
         public Booking Booking { get; set; }
         public int RentedFromStoreId { get; set; }
         public int ToBeSubmittedStoreId { get; set; }
