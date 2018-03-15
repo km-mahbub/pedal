@@ -23,18 +23,30 @@ namespace Pedal.Web.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            var stores = _unitOfWork.Stores.GetAll();
-            return View(stores);
+            var store = _unitOfWork.Stores.GetAll();
+
+            return View(store);
         }
 
         // GET: Store/Details/5
         public ActionResult Details(int id)
         {
             var store = _unitOfWork.Stores.Get(id);
-            //store.Address = _unitOfWork.Addresses.Get(store.AddressId);
-            if (store != null)
+            var address = _unitOfWork.Addresses.Get(store.AddressId);
+
+            StoreViewModel storeView = new StoreViewModel
             {
-                return View(store);
+                Name = store.Name,
+                TotalCycle = store.TotalCycle,
+                Lat = address.Lat,
+                Lon = address.Lon,
+                Area = address.Area,
+                City = address.City,
+                Country = address.Country
+            };
+            if (storeView != null)
+            {
+                return View(storeView);
             }
 
             return HttpNotFound();
@@ -69,7 +81,7 @@ namespace Pedal.Web.Controllers
                 {
                     Name = model.Name,
                     TotalCycle = 0,
-                    AddressId = 1
+                    AddressId = 2
 
                 };
 
@@ -96,10 +108,19 @@ namespace Pedal.Web.Controllers
             var store = _unitOfWork.Stores.Get(id);
             var address = _unitOfWork.Addresses.Get(store.AddressId);
             //store.Address = _unitOfWork.Addresses.Get(store.AddressId);
-            var storetoupdate=new StoreViewModel();
-            if (store != null)
+            var storeToUpdate=new StoreViewModel
             {
-                return View(store);
+                Name = store.Name,
+                TotalCycle = store.TotalCycle,
+                Lat = address.Lat,
+                Lon = address.Lon,
+                Area = address.Area,
+                City = address.City,
+                Country = address.Country
+            };
+            if (storeToUpdate != null)
+            {
+                return View(storeToUpdate);
             }
 
             return RedirectToAction("Index");
@@ -107,36 +128,28 @@ namespace Pedal.Web.Controllers
 
         // POST: Store/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Store store)
+        public ActionResult Edit(int id, StoreViewModel store)
         {
 
             if (ModelState.IsValid)
             {
-                var storetoupdate = _unitOfWork.Stores.Get(id);
-                //storetoupdate.Address = _unitOfWork.Addresses.Get(storetoupdate.AddressId);
+                var storeToUpdate = _unitOfWork.Stores.Get(id);
+                var address = _unitOfWork.Addresses.Get(storeToUpdate.AddressId);
 
-                //storetoupdate.Address.Area = store.Address.Area;
-                //storetoupdate.Address.City = store.Address.City;
-                //storetoupdate.Address.Country = store.Address.Country;
-                //storetoupdate.Address.Lat = store.Address.Lat;
-                //storetoupdate.Address.Lon = store.Address.Lon;
+                address.Area = store.Area;
+                address.City = store.City;
+                address.Country = store.Country;
+                address.Lat = store.Lat;
+                address.Lon = store.Lon;
                 
                 
                 _unitOfWork.Complete();
-
-
-
-                storetoupdate.Name = store.Name;
-                storetoupdate.TotalCycle = store.TotalCycle;
-
                 
-                    
+                storeToUpdate.Name = store.Name;
+                storeToUpdate.TotalCycle = store.TotalCycle;
+ 
                 _unitOfWork.Complete();
-
-
-
-
-
+                
                 return RedirectToAction("Index");
                 
             }
