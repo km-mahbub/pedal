@@ -18,7 +18,10 @@ namespace Pedal.Repositories
         }
         public ApplicationDbContext ApplicationDbContext => Context as ApplicationDbContext;
 
-        
+        public Cycle GetCycleWithDetails(int id)
+        {
+            return ApplicationDbContext.Cycles.Include(c => c.Company).Include(c => c.Store).SingleOrDefault(c => c.CycleId == id);
+        }
 
         public IEnumerable<Cycle> GetAllWithDetails()
         {

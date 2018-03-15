@@ -9,6 +9,7 @@ namespace Pedal.Repositories.Interfaces
 {
     public interface ICycleRepository:IRepository<Cycle>
     {
+        Cycle GetCycleWithDetails(int id);
         IEnumerable<Cycle> GetAllWithDetails();
     }
 }
