@@ -17,8 +17,6 @@ namespace Pedal.Models
         public Company Company { get; set; }
         public int StoreId { get; set; }
         public Store Store { get; set; }
-        public Booking Booking { get; set; }
         public bool IsDeleted { get; set; }
-        public List<Rent> Rents { get; set; }
     }
 }

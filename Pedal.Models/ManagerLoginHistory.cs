@@ -12,6 +12,7 @@ namespace Pedal.Models
         public DateTime LoginTime { get; set; }
         public DateTime LogoutTime { get; set; }
         public string ManagerId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

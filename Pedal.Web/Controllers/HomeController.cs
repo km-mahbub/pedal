@@ -28,9 +28,17 @@ namespace Pedal.Web.Controllers
             {
                 var user = User.Identity;
 
-                if (IsAdminUser())
+                if (IsRole() == "Admin")
                 {
                     return View("AdminIndex");
+                }
+                else if (IsRole() == "Manager")
+                {
+                    return View("ManagerIndex");
+                }
+                else if (IsRole() == "Customer")
+                {
+                    return View("CustomerIndex");
                 }
                 return View();
             }
@@ -55,7 +63,7 @@ namespace Pedal.Web.Controllers
             return View();
         }
 
-        public Boolean IsAdminUser()
+        public string IsRole()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -63,16 +71,9 @@ namespace Pedal.Web.Controllers
                 ApplicationDbContext context = new ApplicationDbContext();
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var s = userManager.GetRoles(user.GetUserId());
-                if (s[0].ToString() == "Admin")
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return s[0].ToString();
             }
-            return false;
+            return "User not Logged In";
         }
     }
 }

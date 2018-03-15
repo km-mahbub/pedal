@@ -17,6 +17,10 @@ namespace Pedal.Repositories
         }
         public ApplicationDbContext ApplicationDbContext => Context as ApplicationDbContext;
 
+        public IEnumerable<Store> GetStoresWithAddress()
+        {
+            return ApplicationDbContext.Stores.Include(a => a.Address).ToList();
+        }
         
     }
 }

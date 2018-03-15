@@ -9,5 +9,6 @@ namespace Pedal.Repositories.Interfaces
 {
     public interface IStoreRepository: IRepository<Store>
     {
+        IEnumerable<Store> GetStoresWithAddress();
     }
 }
