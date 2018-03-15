@@ -1,0 +1,55 @@
+﻿@*@model Pedal.Web.Models.ViewModels.CycleViewModel*@
+@model Pedal.Models.Cycle
+
+@{
+    ViewBag.Title = "test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>test</h2>
+
+<div>
+    <h4>Cycle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Company.CompanyId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Company.CompanyId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Store.StoreId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Store.StoreId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CycleStatusType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CycleStatusType)
+        </dd>
+
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.CycleType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CycleType)
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CycleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

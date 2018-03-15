@@ -332,12 +332,15 @@
     <Content Include="Views\Home\ManagerIndex.cshtml" />
     <Content Include="Views\Home\CustomerIndex.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Cycle\Create.cshtml" />
+    <Content Include="Views\Cycle\Details.cshtml" />
+    <Content Include="Views\Cycle\Index.cshtml" />
+    <Content Include="Views\Cycle\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Helpers\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Cycle\" />
     <Folder Include="Views\Manager\" />
     <Folder Include="Views\Rent\" />
     <Folder Include="Views\User\" />
