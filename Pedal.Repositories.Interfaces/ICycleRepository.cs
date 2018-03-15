@@ -11,5 +11,6 @@ namespace Pedal.Repositories.Interfaces
     {
         Cycle GetCycleWithDetails(int id);
         IEnumerable<Cycle> GetAllWithDetails();
+        
     }
 }

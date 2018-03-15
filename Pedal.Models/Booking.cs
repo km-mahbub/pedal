@@ -19,10 +19,8 @@ namespace Pedal.Models
         public string BookingTrackId { get; set; }
         public int CycleId { get; set; }
         public Cycle Cycle { get; set; }
-
         public string CustomerId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
-        
+        public ApplicationUser ApplicationUser { get; set; }        
         public bool IsDeleted { get; set; }
     }
 }
