@@ -23,6 +23,7 @@ namespace Pedal.Web.Controllers
         // GET: Booking/Create
         public ActionResult Create(int id)
         {
+
             return View();
         }
 

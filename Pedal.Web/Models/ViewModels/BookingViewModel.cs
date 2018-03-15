@@ -7,5 +7,6 @@ namespace Pedal.Web.Models.ViewModels
 {
     public class BookingViewModel
     {
+
     }
 }
