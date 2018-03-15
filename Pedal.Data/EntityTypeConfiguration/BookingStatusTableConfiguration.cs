@@ -16,9 +16,6 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .IsRequired();
             Property(a => a.IsDeleted)
                 .HasColumnAnnotation("Default", false);
-
-            HasRequired(c => c.Booking)
-                .WithRequiredDependent(s => s.BookingStatusTable);
         }
     }
 }

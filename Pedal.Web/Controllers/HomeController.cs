@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Pedal.Data;
+using Pedal.Models;
 using Pedal.Repositories;
 using Pedal.Repositories.Interfaces;
 
@@ -20,8 +24,21 @@ namespace Pedal.Web.Controllers
 
         public ActionResult Index()
         {
-            var cycles = _unitOfWork.Cycles.GetAll();
-            return View(cycles);
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+
+                if (IsAdminUser())
+                {
+                    return View("AdminIndex");
+                }
+                return View();
+            }
+            else
+            {
+                
+            }
+            return View();
         }
 
         public ActionResult About()
@@ -37,5 +54,7 @@ namespace Pedal.Web.Controllers
 
             return View();
         }
+
+        
     }
 }

@@ -7,13 +7,13 @@ namespace Pedal.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddedMoreDbRelation : IMigrationMetadata
+    public sealed partial class InitialMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedMoreDbRelation));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201803072207159_AddedMoreDbRelation"; }
+            get { return "201803150654519_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source

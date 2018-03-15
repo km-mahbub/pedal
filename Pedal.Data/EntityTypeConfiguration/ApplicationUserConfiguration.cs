@@ -26,12 +26,12 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .IsOptional();
             Property(a => a.DrivingLicense)
                 .IsOptional();
+            Property(c => c.TotalRentHour)
+                .HasColumnAnnotation("Default", 0);
+            Property(c => c.TotalRentCount)
+                .HasColumnAnnotation("Default", 0);
             Property(a => a.IsDeleted)
                 .HasColumnAnnotation("Default", false);
-
-            HasOptional(c => c.Address)
-                .WithMany(a => a.ApplicationUsers)
-                .HasForeignKey(c => c.AddressId);
         }
     }
 }

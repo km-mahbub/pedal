@@ -19,17 +19,6 @@ namespace Pedal.Data.EntityTypeConfiguration
             Property(a => a.IsDeleted)
                 .HasColumnAnnotation("Default", false);
 
-            HasRequired(m => m.Manager)
-                .WithMany(c => c.CashMemos)
-                .HasForeignKey(d => d.ManagerId);
-
-            HasRequired(s => s.Store)
-                .WithMany(c => c.CashMemos)
-                .HasForeignKey(d => d.StoreId);
-            HasRequired(m => m.Customer)
-                .WithMany(c => c.CashMemos)
-                .HasForeignKey(d => d.CustomerId);
-
 
         }
     }

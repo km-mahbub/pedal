@@ -22,9 +22,7 @@ namespace Pedal.Data
             return new ApplicationDbContext();
         }
 
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Manager> Managers { get; set; }
-        public DbSet<Admin> Admins { get; set; }
+        
         public DbSet<BookingStatusTable> BookingStatusTables { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Cycle> Cycles { get; set; }
@@ -42,9 +40,7 @@ namespace Pedal.Data
             modelBuilder.Configurations.Add(new BookingStatusTableConfiguration());
             modelBuilder.Configurations.Add(new CashMemoConfiguration());
             modelBuilder.Configurations.Add(new CompanyConfiguration());
-            modelBuilder.Configurations.Add(new CustomerConfiguration());
             modelBuilder.Configurations.Add(new CycleConfiguration());
-            modelBuilder.Configurations.Add(new ManagerConfiguration());
             modelBuilder.Configurations.Add(new ManagerLoginHistoryConfiguration());
             modelBuilder.Configurations.Add(new RentConfiguration());
             modelBuilder.Configurations.Add(new StoreConfiguration());

@@ -18,10 +18,6 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .IsRequired();
             Property(a => a.IsDeleted)
                 .HasColumnAnnotation("Default", false);
-
-            HasRequired(m => m.Manager)
-                .WithMany(L => L.ManagerLoginHistory)
-                .HasForeignKey(m => m.ManagerId);
         }
 
     }

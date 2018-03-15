@@ -22,17 +22,6 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .HasColumnAnnotation("Default", false);
 
 
-            HasRequired(c => c.Company)
-                .WithMany(a => a.Cycles)
-                .HasForeignKey(v => v.CompanyId)
-                .WillCascadeOnDelete(false);
-
-            HasRequired(s => s.Store)
-                .WithMany(c => c.Cycles)
-                .HasForeignKey(f => f.StoreId)
-                .WillCascadeOnDelete(false);
-
-
 
         }
     }

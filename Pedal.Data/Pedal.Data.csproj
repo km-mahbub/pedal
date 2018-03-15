@@ -59,52 +59,14 @@
     <Compile Include="EntityTypeConfiguration\BookingStatusTableConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\CashMemoConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\CompanyConfiguration.cs" />
-    <Compile Include="EntityTypeConfiguration\CustomerConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\CycleConfiguration.cs" />
-    <Compile Include="EntityTypeConfiguration\ManagerConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\ManagerLoginHistoryConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\RentConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\StoreConfiguration.cs" />
     <Compile Include="EntityTypeConfiguration\AddressConfiguration.cs" />
-    <Compile Include="Migrations\201803062225161_InitialMigration.cs" />
-    <Compile Include="Migrations\201803062225161_InitialMigration.Designer.cs">
-      <DependentUpon>201803062225161_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803072152403_AddedModels.cs" />
-    <Compile Include="Migrations\201803072152403_AddedModels.Designer.cs">
-      <DependentUpon>201803072152403_AddedModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803072207159_AddedMoreDbRelation.cs" />
-    <Compile Include="Migrations\201803072207159_AddedMoreDbRelation.Designer.cs">
-      <DependentUpon>201803072207159_AddedMoreDbRelation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803072328376_DateTimeErrorFixed.cs" />
-    <Compile Include="Migrations\201803072328376_DateTimeErrorFixed.Designer.cs">
-      <DependentUpon>201803072328376_DateTimeErrorFixed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803072334408_AddressErrorFixed.cs" />
-    <Compile Include="Migrations\201803072334408_AddressErrorFixed.Designer.cs">
-      <DependentUpon>201803072334408_AddressErrorFixed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803082131115_AddedIsDeletedToModels.cs" />
-    <Compile Include="Migrations\201803082131115_AddedIsDeletedToModels.Designer.cs">
-      <DependentUpon>201803082131115_AddedIsDeletedToModels.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803082216399_Seeding.cs" />
-    <Compile Include="Migrations\201803082216399_Seeding.Designer.cs">
-      <DependentUpon>201803082216399_Seeding.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803121558153_StoreName.cs" />
-    <Compile Include="Migrations\201803121558153_StoreName.Designer.cs">
-      <DependentUpon>201803121558153_StoreName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803141617288_AddedLatLon.cs" />
-    <Compile Include="Migrations\201803141617288_AddedLatLon.Designer.cs">
-      <DependentUpon>201803141617288_AddedLatLon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803141620229_AddedTrackIDInRentTable.cs" />
-    <Compile Include="Migrations\201803141620229_AddedTrackIDInRentTable.Designer.cs">
-      <DependentUpon>201803141620229_AddedTrackIDInRentTable.cs</DependentUpon>
+    <Compile Include="Migrations\201803150654519_InitialMigration.cs" />
+    <Compile Include="Migrations\201803150654519_InitialMigration.Designer.cs">
+      <DependentUpon>201803150654519_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -120,35 +82,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803062225161_InitialMigration.resx">
-      <DependentUpon>201803062225161_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803072152403_AddedModels.resx">
-      <DependentUpon>201803072152403_AddedModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803072207159_AddedMoreDbRelation.resx">
-      <DependentUpon>201803072207159_AddedMoreDbRelation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803072328376_DateTimeErrorFixed.resx">
-      <DependentUpon>201803072328376_DateTimeErrorFixed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803072334408_AddressErrorFixed.resx">
-      <DependentUpon>201803072334408_AddressErrorFixed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803082131115_AddedIsDeletedToModels.resx">
-      <DependentUpon>201803082131115_AddedIsDeletedToModels.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803082216399_Seeding.resx">
-      <DependentUpon>201803082216399_Seeding.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803121558153_StoreName.resx">
-      <DependentUpon>201803121558153_StoreName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803141617288_AddedLatLon.resx">
-      <DependentUpon>201803141617288_AddedLatLon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803141620229_AddedTrackIDInRentTable.resx">
-      <DependentUpon>201803141620229_AddedTrackIDInRentTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201803150654519_InitialMigration.resx">
+      <DependentUpon>201803150654519_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

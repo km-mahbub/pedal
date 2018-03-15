@@ -19,10 +19,8 @@ namespace Pedal.Data.EntityTypeConfiguration
 
             Property(s => s.Name)
                 .IsRequired();
-
-            HasRequired(s => s.Address)
-                .WithMany(a => a.Stores)
-                .HasForeignKey(d => d.AddressId);
+            Property(s => s.IdentityId)
+                .IsOptional();
 
         }
 

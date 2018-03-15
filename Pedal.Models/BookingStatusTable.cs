@@ -9,7 +9,7 @@ namespace Pedal.Models
     public class BookingStatusTable
     {
         public int BookingStatusTableId { get; set; }
-        public Booking Booking { get; set; }
+        public int BookingId { get; set; }
         public bool IsRented { get; set; }
         public bool IsDeleted { get; set; }
     }

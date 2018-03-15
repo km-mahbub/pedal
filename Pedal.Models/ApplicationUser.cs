@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -23,13 +24,17 @@ namespace Pedal.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? DateOfBirth { get; set; }
         public int? AddressId { get; set; }
-        public Address Address { get; set; }
         public string NationalId { get; set; }
         public string PassportNumber { get; set; }
         public string DrivingLicense { get; set; }
         public Gender Gender { get; set; }
+        public int TotalRentHour { get; set; }
+        public int TotalRentCount { get; set; }
         public bool IsDeleted { get; set; }
+        public int StoreId { get; set; }
+
     }
 }

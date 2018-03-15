@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Pedal.Data;
@@ -13,6 +15,7 @@ using Pedal.Models;
 using Pedal.Repositories;
 using Pedal.Repositories.Interfaces;
 using Pedal.Web.Models;
+using Unity.Attributes;
 
 namespace Pedal.Web.Controllers
 {
@@ -21,11 +24,18 @@ namespace Pedal.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        //private readonly IUnitOfWork _unitOfWork = new UnitOfWork();
+        private readonly IUnitOfWork _unitOfWork;
+        private ApplicationDbContext _context;
 
+        [InjectionConstructor]
         public AccountController()
         {
+            _context = new ApplicationDbContext();
+        }
 
+        public AccountController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
         }
         
 
@@ -69,7 +79,7 @@ namespace Pedal.Web.Controllers
         }
 
         //
-        // POST: /Account/Login
+        // POST: /Account/Login   
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -80,9 +90,9 @@ namespace Pedal.Web.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            // This doesn't count login failures towards account lockout   
+            // To enable password failures to trigger account lockout, change to shouldLockout: true   
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -98,12 +108,12 @@ namespace Pedal.Web.Controllers
             }
         }
 
-        //
-        // GET: /Account/VerifyCode
+        //   
+        // GET: /Account/VerifyCode   
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
-            // Require that the user has already logged in via username/password or external login
+            // Require that the user has already logged in via username/password or external login   
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
@@ -142,15 +152,32 @@ namespace Pedal.Web.Controllers
         }
 
         //
-        // GET: /Account/Register
+        // GET: /Account/Register   
+        [AllowAnonymous]
+        public ActionResult AddManager()
+        {
+            //List<Store> storeList = _context.Stores.ToList();
+            //ViewData["StoreNameList"] = storeList.Select(x => new SelectListItem { Value = x.StoreId.ToString(), Text = x.Name });
+
+            //List<Store> store = _context.Stores.ToList();
+
+            //RegisterViewModel vm = new RegisterViewModel(store);
+
+            RegisterViewModel model = new RegisterViewModel
+            {
+                StoreList = new SelectList(_context.Stores, "StoreId", "Name")
+            };
+            return View("RegisterManager",model);
+        }
+
         [AllowAnonymous]
         public ActionResult Register()
-        {
-            return View();
+        { 
+            return View("RegisterCustomer");
         }
 
         //
-        // POST: /Account/Register
+        // POST: /Account/Register   
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -158,29 +185,64 @@ namespace Pedal.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    Gender = model.Gender,
+                    DateOfBirth = model.DateOfBirth,
+                    PhoneNumber = model.PhoneNumber,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    if (model.UserRoles == "Customer")
+                    {
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    }
 
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    //ApplicationDbContext _context = new ApplicationDbContext();
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771   
+                    // Send an email with this link   
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);   
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);   
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");   
+                    //Assign Role to user Here      
+                    await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    //Ends Here
+                    if (model.UserRoles == "Manager")
+                    {
+                        user.StoreId = model.StoreId;
+                        var store = _context.Stores.SingleOrDefault(s => s.StoreId == model.StoreId);
+
+                        if (store != null) store.IdentityId = user.Id;
+                        _context.SaveChanges();
+                        return RedirectToAction("Index", "Home");
+                    }
 
 
-                    //_unitOfWork.Customers.Add(new Customer{ IdentityId = user.Id});
-                    //_unitOfWork.Complete();
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            if (!ModelState.IsValid)
+            {
+                if (model.UserRoles == "Manager")
+                {
+                    model.StoreList = new SelectList(_context.Stores, "StoreId", "Name"); // add this
+                    return View("RegisterManager", model);
+                }
+
+                if (model.UserRoles == "Customer")
+                {
+                    return View("RegisterCustomer", model);
+                }
+            }
+
+            // If we got this far, something failed, redisplay form   
+            return View("RegisterCustomer", model);
         }
 
         //

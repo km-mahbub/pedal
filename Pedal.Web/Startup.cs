@@ -13,7 +13,7 @@ namespace Pedal.Web
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            //CreateRolesandUsers();
+            CreateRolesandUsers();
         }
 
         // In this method we will create default User roles and Admin user for login   
@@ -62,9 +62,9 @@ namespace Pedal.Web
             }
 
             // creating Creating Employee role    
-            if (!roleManager.RoleExists("User"))
+            if (!roleManager.RoleExists("Customer"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole {Name = "User"};
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole {Name = "Customer"};
                 roleManager.Create(role);
 
             }

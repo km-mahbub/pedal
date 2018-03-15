@@ -17,9 +17,6 @@ namespace Pedal.Repositories
         }
         public ApplicationDbContext ApplicationDbContext => Context as ApplicationDbContext;
 
-        public override IEnumerable<Store> GetAll()
-        {
-            return ApplicationDbContext.Stores.Include(s => s.Address).Include(s => s.Manager);
-        }
+        
     }
 }

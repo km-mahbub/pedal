@@ -21,20 +21,6 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .HasMaxLength(255);
             Property(a => a.IsDeleted)
                 .HasColumnAnnotation("Default", false);
-
-            HasRequired(c=>c.Store)
-                .WithMany(s=>s.Bookings)
-                .HasForeignKey(f=>f.StoreId)
-                .WillCascadeOnDelete(false);
-            HasRequired(c => c.Cycle)
-                .WithRequiredDependent(s => s.Booking)
-                .WillCascadeOnDelete(false);
-            HasRequired(c => c.BookingStatusTable)
-                .WithRequiredPrincipal(d => d.Booking);
-
-            HasRequired(m => m.Customer)
-                .WithMany(c => c.Bookings)
-                .HasForeignKey(d => d.CustomerId);
         }
     }
 }
