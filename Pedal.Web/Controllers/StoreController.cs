@@ -31,7 +31,7 @@ namespace Pedal.Web.Controllers
         public ActionResult Details(int id)
         {
             var store = _unitOfWork.Stores.Get(id);
-            store.Address = _unitOfWork.Addresses.Get(store.AddressId);
+            //store.Address = _unitOfWork.Addresses.Get(store.AddressId);
             if (store != null)
             {
                 return View(store);
@@ -69,7 +69,7 @@ namespace Pedal.Web.Controllers
                 {
                     Name = model.Name,
                     TotalCycle = 0,
-                    AddressId = 2
+                    AddressId = 1
 
                 };
 
@@ -94,7 +94,9 @@ namespace Pedal.Web.Controllers
         public ActionResult Edit(int id)
         {
             var store = _unitOfWork.Stores.Get(id);
-            store.Address = _unitOfWork.Addresses.Get(store.AddressId);
+            var address = _unitOfWork.Addresses.Get(store.AddressId);
+            //store.Address = _unitOfWork.Addresses.Get(store.AddressId);
+            var storetoupdate=new StoreViewModel();
             if (store != null)
             {
                 return View(store);
@@ -111,13 +113,13 @@ namespace Pedal.Web.Controllers
             if (ModelState.IsValid)
             {
                 var storetoupdate = _unitOfWork.Stores.Get(id);
-                storetoupdate.Address = _unitOfWork.Addresses.Get(storetoupdate.AddressId);
+                //storetoupdate.Address = _unitOfWork.Addresses.Get(storetoupdate.AddressId);
 
-                storetoupdate.Address.Area = store.Address.Area;
-                storetoupdate.Address.City = store.Address.City;
-                storetoupdate.Address.Country = store.Address.Country;
-                storetoupdate.Address.Lat = store.Address.Lat;
-                storetoupdate.Address.Lon = store.Address.Lon;
+                //storetoupdate.Address.Area = store.Address.Area;
+                //storetoupdate.Address.City = store.Address.City;
+                //storetoupdate.Address.Country = store.Address.Country;
+                //storetoupdate.Address.Lat = store.Address.Lat;
+                //storetoupdate.Address.Lon = store.Address.Lon;
                 
                 
                 _unitOfWork.Complete();
@@ -148,7 +150,7 @@ namespace Pedal.Web.Controllers
         public ActionResult Delete(int id)
         {
             var store = _unitOfWork.Stores.Get(id);
-            store.Address = _unitOfWork.Addresses.Get(store.AddressId);
+            //store.Address = _unitOfWork.Addresses.Get(store.AddressId);
             if (store != null)
             {
                 return View(store);
