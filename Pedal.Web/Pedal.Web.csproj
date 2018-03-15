@@ -237,7 +237,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\CycleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -336,12 +335,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Helpers\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Cycle\" />
     <Folder Include="Views\Manager\" />
     <Folder Include="Views\Rent\" />
     <Folder Include="Views\User\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

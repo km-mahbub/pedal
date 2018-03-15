@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201803150654519_InitialMigration.Designer.cs">
       <DependentUpon>201803150654519_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803151449557_fixingDatanase.cs" />
+    <Compile Include="Migrations\201803151449557_fixingDatanase.Designer.cs">
+      <DependentUpon>201803151449557_fixingDatanase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -84,6 +88,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803150654519_InitialMigration.resx">
       <DependentUpon>201803150654519_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803151449557_fixingDatanase.resx">
+      <DependentUpon>201803151449557_fixingDatanase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

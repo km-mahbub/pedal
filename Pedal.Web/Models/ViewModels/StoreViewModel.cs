@@ -17,7 +17,7 @@ namespace Pedal.Web.Models.ViewModels
         public List<Rent> RentsSubmittedToThisStore { get; set; }
         public List<Booking> Bookings { get; set; }
         public List<CashMemo> CashMemos { get; set; }
-        public Manager Manager { get; set; }
+        
 
         //Address 
         public Double Lat { get; set; }

@@ -216,7 +216,7 @@ namespace Pedal.Web.Controllers
                         user.StoreId = model.StoreId;
                         var store = _context.Stores.SingleOrDefault(s => s.StoreId == model.StoreId);
 
-                        if (store != null) store.IdentityId = user.Id;
+                        if (store != null) store.ManagerId = user.Id;
                         _context.SaveChanges();
                         return RedirectToAction("Index", "Home");
                     }

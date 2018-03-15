@@ -19,7 +19,7 @@ namespace Pedal.Data.EntityTypeConfiguration
 
             Property(s => s.Name)
                 .IsRequired();
-            Property(s => s.IdentityId)
+            Property(s => s.ManagerId)
                 .IsOptional();
 
         }
