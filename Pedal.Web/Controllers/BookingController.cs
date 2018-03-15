@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Pedal.Models;
+using Pedal.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +11,12 @@ namespace Pedal.Web.Controllers
 {
     public class BookingController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
+        public BookingController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         // GET: Booking
         public ActionResult Index()
         {
@@ -17,14 +26,27 @@ namespace Pedal.Web.Controllers
         // GET: Booking/Details/5
         public ActionResult Details(int id)
         {
+
+
             return View();
         }
 
         // GET: Booking/Create
         public ActionResult Create(int id)
         {
+            Cycle toBeBookedCycle = _unitOfWork.Cycles.GetCycleWithDetails(id);
+            Booking toBeBooked = new Booking
+            {
+                CycleId = id,
+                BookingStatus = true,
+                CustomerId = User.Identity.GetUserId(),
+                BookingTime = DateTime.Now,
+                StoreId = toBeBookedCycle.StoreId,
+                BookingTrackId = this.BookinTrackIdGenerator()
+            };
+            
 
-            return View();
+            return View(toBeBooked);
         }
 
         // POST: Booking/Create
@@ -85,6 +107,21 @@ namespace Pedal.Web.Controllers
             {
                 return View();
             }
+        }
+        private String BookinTrackIdGenerator()
+        {
+            const string arrr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            Random rnd = new Random();
+            string str = "";
+            int next;
+            for (int i = 0; i < 5; i++)
+            {
+                next = rnd.Next(0, 35);
+                str += arrr[next];
+
+            }
+            return str;
+
         }
     }
 }
