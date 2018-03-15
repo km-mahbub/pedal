@@ -28,6 +28,14 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.TotalCycle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TotalCycle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TotalCycle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(model => model.Lon, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Lon, new { htmlAttributes = new { @class = "form-control" } })
