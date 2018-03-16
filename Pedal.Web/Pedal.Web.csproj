@@ -621,6 +621,7 @@
     <Content Include="Views\Cycle\AdminIndex.cshtml" />
     <Content Include="Views\Booking\Delete.cshtml" />
     <Content Include="Views\Booking\Create.cshtml" />
+    <Content Include="Views\Cycle\Booking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

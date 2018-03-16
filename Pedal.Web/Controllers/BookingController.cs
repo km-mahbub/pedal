@@ -34,30 +34,52 @@ namespace Pedal.Web.Controllers
         // GET: Booking/Create
         public ActionResult Create(int id)
         {
-            Cycle toBeBookedCycle = _unitOfWork.Cycles.GetCycleWithDetails(id);
-            Booking toBeBooked = new Booking
-            {
-                CycleId = id,
-                BookingStatus = true,
-                CustomerId = User.Identity.GetUserId(),
-                BookingTime = DateTime.Now,
-                StoreId = toBeBookedCycle.StoreId,
-                BookingTrackId = this.BookinTrackIdGenerator()
-            };
+            //Cycle toBeBookedCycle = _unitOfWork.Cycles.GetCycleWithDetails(id);
+            //Booking toBeBooked = new Booking
+            //{
+            //    CycleId = id,
+            //    Cycle = toBeBookedCycle,
+            //    BookingStatus = true,
+            //    CustomerId = User.Identity.GetUserId(),
+            //    BookingTime = DateTime.Now,
+            //    StoreId = toBeBookedCycle.StoreId,
+            //    Store = _unitOfWork.Stores.Get(toBeBookedCycle.StoreId),
+            //    BookingTrackId = this.BookinTrackIdGenerator(),
+            //};
             
 
-            return View(toBeBooked);
+            return View();
         }
 
         // POST: Booking/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(int id, Booking model)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
+                Console.WriteLine(model.CycleId);
+
+                //Booking toBeBooked = new Booking
+                //{
+                //    CycleId = id,
+                //    Cycle = toBeBookedCycle,
+                //    BookingStatus = true,
+                //    CustomerId = User.Identity.GetUserId(),
+                //    BookingTime = DateTime.Now,
+                //    StoreId = toBeBookedCycle.StoreId,
+                //    Store = _unitOfWork.Stores.Get(toBeBookedCycle.StoreId),
+                //    BookingTrackId = this.BookinTrackIdGenerator(),
+                //};
+
+                //_unitOfWork.Bookings.Add(model);
+                //_unitOfWork.Complete();
+                //var cycle = _unitOfWork.Cycles.Get(model.CycleId);
+                //cycle.CycleStatusType = CycleStatusType.Booked;
+                //_unitOfWork.Complete();
+
+                return RedirectToAction("CycleStore", "Cycle", new { id = model.StoreId });
             }
             catch
             {
@@ -108,20 +130,6 @@ namespace Pedal.Web.Controllers
                 return View();
             }
         }
-        private String BookinTrackIdGenerator()
-        {
-            const string arrr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            Random rnd = new Random();
-            string str = "";
-            int next;
-            for (int i = 0; i < 5; i++)
-            {
-                next = rnd.Next(0, 35);
-                str += arrr[next];
-
-            }
-            return str;
-
-        }
+        
     }
 }

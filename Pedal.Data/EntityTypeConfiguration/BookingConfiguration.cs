@@ -21,6 +21,9 @@ namespace Pedal.Data.EntityTypeConfiguration
                 .HasMaxLength(255);
             Property(a => a.IsDeleted)
                 .HasColumnAnnotation("Default", false);
+
+            Property(a => a.IsRented)
+                .HasColumnAnnotation("Default", false);
         }
     }
 }

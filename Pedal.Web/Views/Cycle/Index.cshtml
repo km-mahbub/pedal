@@ -27,6 +27,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.CycleType)
             </th>
+            <th>
+                Cost Per Hour (TK)
+            </th>
 
             <th></th>
         </tr>
@@ -51,13 +54,16 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CycleType)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostPerHour)
+                </td>
 
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.CycleId }) |
         @Html.ActionLink("Details", "Details", new { id = item.CycleId }) |
         @Html.ActionLink("Delete", "Delete", new { id = item.CycleId })*@
 
-                    @Html.ActionLink("Book Now!", "Create", "Booking", new { id = item.CycleId }, null)
+                    @Html.ActionLink("Book Now!", "Booking", "Cycle", new { id = item.CycleId }, null)
                 </td>
             </tr>
         }

@@ -23,5 +23,7 @@ namespace Pedal.Web.Models.ViewModels
         public IEnumerable<SelectListItem> StoreList { get; set; }
         [Display(Name = "Select Status")]
         public CycleStatusType CycleStatusType { get; set; }
+
+        public Double CostPerHour { get; set; }
     }
 }

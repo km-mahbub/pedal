@@ -51,13 +51,13 @@
             @Html.DisplayFor(model => model.Cycle.CostPerHour)
         </dd>
 
-        
+
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-
         <div class="form-actions no-color">
             <input type="submit" value="Confirm Booking" class="btn btn-default" /> |
             @Html.ActionLink("Back to List", "Index")
