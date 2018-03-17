@@ -3,8 +3,6 @@ using Pedal.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Pedal.Data;
 
 namespace Pedal.Repositories
@@ -15,5 +13,11 @@ namespace Pedal.Repositories
         {
         }
         public ApplicationDbContext ApplicationDbContext => Context as ApplicationDbContext;
+
+        public IEnumerable<Booking> GetBookedCycleByStoreId(int id)
+        {
+            
+            return ApplicationDbContext.Bookings.Where(b=>b.BookingTime.Subtract(DateTime.Now).TotalHours > -2).Where(b=>b.StoreId==id);
+        }
     }
 }
