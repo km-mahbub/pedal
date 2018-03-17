@@ -11,9 +11,7 @@
         </li>
         @if (this.User.IsInRole("Customer"))
         {
-            <li>
-                @Html.ActionLink("Baal", "Index", "Home")
-            </li>
+            <li>@Html.ActionLink("Profile", "Index", "Customer")</li>
         }
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
     </ul>

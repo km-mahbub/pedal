@@ -19,6 +19,8 @@ namespace Pedal.Web.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
+        [Authorize(Roles = "Admin")]
         // GET: Cycle
         public ActionResult Index()
         {
@@ -42,6 +44,7 @@ namespace Pedal.Web.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Cycle/Create
         public ActionResult Create()
         {
@@ -55,6 +58,7 @@ namespace Pedal.Web.Controllers
         }
 
         // POST: Cycle/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(CycleViewModel cycle)
         {
@@ -79,6 +83,7 @@ namespace Pedal.Web.Controllers
         }
 
         // GET: Cycle/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var cycle = _unitOfWork.Cycles.Get(id);
@@ -98,6 +103,7 @@ namespace Pedal.Web.Controllers
         }
 
         // POST: Cycle/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(int id, CycleViewModel model)
         {
@@ -128,6 +134,7 @@ namespace Pedal.Web.Controllers
         }
 
         // GET: Cycle/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var cycle = _unitOfWork.Cycles.GetCycleWithDetails(id);
@@ -139,6 +146,7 @@ namespace Pedal.Web.Controllers
         }
 
         // POST: Cycle/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(int id, Cycle model)
         {
@@ -165,6 +173,7 @@ namespace Pedal.Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpGet]
         public ActionResult Booking(int id)
         {
@@ -184,6 +193,7 @@ namespace Pedal.Web.Controllers
             return View(toBeBooked);
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         public ActionResult Booking(int id, Booking model)
         {

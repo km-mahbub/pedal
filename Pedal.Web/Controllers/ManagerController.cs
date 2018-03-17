@@ -22,24 +22,28 @@ namespace Pedal.Web.Controllers
 
         }
         // GET: Manager
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: Manager/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Manager/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Manager/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -56,12 +60,14 @@ namespace Pedal.Web.Controllers
         }
 
         // GET: Manager/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
         // POST: Manager/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -78,12 +84,14 @@ namespace Pedal.Web.Controllers
         }
 
         // GET: Manager/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
         // POST: Manager/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
@@ -99,6 +107,7 @@ namespace Pedal.Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpGet]
         public ActionResult Rent(int id)
         {
@@ -114,6 +123,7 @@ namespace Pedal.Web.Controllers
             return View(toBeRented);
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         public ActionResult Rent(int id, RentViewModel model)
         {
@@ -160,6 +170,7 @@ namespace Pedal.Web.Controllers
 
         //    return View("Index", _unitOfWork.Cycles.GetCycleByStoreId(toBeBookedCycle.StoreId));
         //}
+        [Authorize(Roles = "Manager")]
         [HttpGet]
         public bool FindCustomer(string value)
         {
@@ -173,12 +184,14 @@ namespace Pedal.Web.Controllers
             return true;
         }
 
+        [Authorize(Roles = "Manager")]
         public ActionResult Bookings()
         {
             var manager = _unitOfWork.UserManager.FindById(User.Identity.GetUserId());
             return View(_unitOfWork.Bookings.GetBookedCycleByStoreId(manager.StoreId));
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpGet]
         public ActionResult RentFromBooking(int id)
         {
@@ -200,6 +213,8 @@ namespace Pedal.Web.Controllers
             };
             return View(viewModel);
         }
+
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         public ActionResult RentFromBooking(int id, BookingToRentViewModel viewModel)
         {
@@ -227,6 +242,8 @@ namespace Pedal.Web.Controllers
             return RedirectToAction("Bookings");
 
         }
+
+        [Authorize(Roles = "Manager")]
         [HttpGet]
         public ActionResult ReceiveCycle()
         {
@@ -235,6 +252,7 @@ namespace Pedal.Web.Controllers
 
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         public ActionResult ReceiveCycle(CashMemoViewModel model)
         {
@@ -281,6 +299,7 @@ namespace Pedal.Web.Controllers
 
         }
 
+        [Authorize(Roles = "Manager")]
         [HttpGet]
         public ActionResult FindCycle(string value)
         {
@@ -298,6 +317,12 @@ namespace Pedal.Web.Controllers
             };
 
             return Json(viewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "Manager")]
+        public ActionResult DailyTransaction()
+        {
+            throw new NotImplementedException();
         }
     }
 }

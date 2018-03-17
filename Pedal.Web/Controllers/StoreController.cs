@@ -23,12 +23,7 @@ namespace Pedal.Web.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            if (User.IsInRole("Admin") || User.IsInRole("Customer"))
-            {
-                var storeList = _unitOfWork.Stores.GetStoresWithAddress();
-
-                return View(storeList);
-            }
+            
 
             if (User.IsInRole("Manager"))
             {
@@ -37,7 +32,9 @@ namespace Pedal.Web.Controllers
 
             }
 
-            return HttpNotFound();
+            var storeList = _unitOfWork.Stores.GetStoresWithAddress();
+
+            return View(storeList);
 
         }
 
@@ -67,13 +64,16 @@ namespace Pedal.Web.Controllers
         }
 
         // GET: Store/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             var CreateStore = new StoreViewModel();
             return View(CreateStore);
         }
 
+
         // POST: Store/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(StoreViewModel model)
         {
@@ -117,6 +117,7 @@ namespace Pedal.Web.Controllers
         }
 
         // GET: Store/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var store = _unitOfWork.Stores.Get(id);
@@ -141,6 +142,7 @@ namespace Pedal.Web.Controllers
         }
 
         // POST: Store/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(int id, StoreViewModel store)
         {
@@ -174,6 +176,7 @@ namespace Pedal.Web.Controllers
         }
 
         // GET: Store/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var store = _unitOfWork.Stores.Get(id);
@@ -187,6 +190,7 @@ namespace Pedal.Web.Controllers
         }
 
         // POST: Store/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(int id, Store store)
         {
