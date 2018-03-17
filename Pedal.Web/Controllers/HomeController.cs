@@ -34,7 +34,7 @@ namespace Pedal.Web.Controllers
                 }
                 else if (IsRole() == "Manager")
                 {
-                    return View("ManagerIndex");
+                    return RedirectToAction("Index", "Store");
                 }
                 else if (IsRole() == "Customer")
                 {

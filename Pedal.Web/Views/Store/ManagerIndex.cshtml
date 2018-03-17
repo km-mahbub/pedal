@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Pedal.Models.Cycle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped" id="tdata">
+    <thead>
+        <tr>
+            <th>
+                Cycle Name
+            </th>
+            <th>
+                Cycle Status
+            </th>
+            <th>
+                Total Rented Hour
+            </th>
+            <th>
+                Cycle Type
+            </th>
+            <th>
+                Cost Per Hour (TK)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CycleStatusType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentedHour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CycleType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostPerHour)
+                </td>
+
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.CycleId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.CycleId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.CycleId })*@
+
+                    @Html.ActionLink("Rent!", "Rent", "Manager", new { id = item.CycleId }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@*<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tdata').DataTable();
+    })
+</script>

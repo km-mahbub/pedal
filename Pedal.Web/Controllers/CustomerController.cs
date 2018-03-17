@@ -7,11 +7,11 @@ using System.Web.Mvc;
 
 namespace Pedal.Web.Controllers
 {
-    public class UserController : Controller
+    public class CustomerController : Controller
     {
 
         IUnitOfWork _unitOfWork;
-        public UserController(IUnitOfWork unitOfWork)
+        public CustomerController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
 

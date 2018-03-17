@@ -108,6 +108,19 @@ namespace Pedal.Web.Controllers
             }
         }
 
+        public string IsRole()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                var user = User.Identity;
+                ApplicationDbContext context = new ApplicationDbContext();
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                var s = userManager.GetRoles(user.GetUserId());
+                return s[0].ToString();
+            }
+            return "User not Logged In";
+        }
+
         //   
         // GET: /Account/VerifyCode   
         [AllowAnonymous]
@@ -185,16 +198,34 @@ namespace Pedal.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                ApplicationUser user;
+                if (model.UserRoles == "Manager")
                 {
-                    UserName = model.UserName,
-                    Email = model.Email,
-                    Gender = model.Gender,
-                    DateOfBirth = model.DateOfBirth,
-                    PhoneNumber = model.PhoneNumber,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
-                };
+                    user = new ApplicationUser
+                    {
+                        UserName = model.UserName,
+                        Email = model.Email,
+                        Gender = model.Gender,
+                        DateOfBirth = model.DateOfBirth,
+                        PhoneNumber = model.PhoneNumber,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        StoreId = model.StoreId
+                    };
+                }
+                else
+                {
+                    user = new ApplicationUser
+                    {
+                        UserName = model.UserName,
+                        Email = model.Email,
+                        Gender = model.Gender,
+                        DateOfBirth = model.DateOfBirth,
+                        PhoneNumber = model.PhoneNumber,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName
+                    };
+                }
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -213,7 +244,10 @@ namespace Pedal.Web.Controllers
                     //Ends Here
                     if (model.UserRoles == "Manager")
                     {
-                        user.StoreId = model.StoreId;
+                        //var newUser = UserManager.FindByEmail(model.Email);
+                        //newUser.StoreId = model.StoreId;
+                        //_context.SaveChanges();
+
                         var store = _context.Stores.SingleOrDefault(s => s.StoreId == model.StoreId);
 
                         if (store != null) store.ManagerId = user.Id;

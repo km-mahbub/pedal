@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Pedal.Data;
+using Pedal.Models;
 using Pedal.Repositories.Interfaces;
 
 namespace Pedal.Repositories
@@ -23,6 +26,7 @@ namespace Pedal.Repositories
             Rents = new RentRepository(_context);
             Stores = new StoreRepository(_context);
             Addresses = new AddressRepository(_context);
+            UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
         }
         
         public IBookingRepository Bookings { get; }
@@ -33,6 +37,7 @@ namespace Pedal.Repositories
         public IRentRepository Rents { get; }
         public IStoreRepository Stores { get; }
         public IAddressRepository Addresses { get; }
+        public UserManager<ApplicationUser> UserManager { get; set; }
 
         public int Complete()
         {

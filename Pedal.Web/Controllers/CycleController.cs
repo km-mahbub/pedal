@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Pedal.Web.Helpers;
 using Pedal.Web.Models.ViewModels;
 
 namespace Pedal.Web.Controllers
@@ -176,8 +177,7 @@ namespace Pedal.Web.Controllers
                 CustomerId = User.Identity.GetUserId(),
                 BookingTime = DateTime.Now,
                 StoreId = toBeBookedCycle.StoreId,
-                Store = _unitOfWork.Stores.Get(toBeBookedCycle.StoreId),
-                BookingTrackId = this.BookinTrackIdGenerator(),
+                Store = _unitOfWork.Stores.Get(toBeBookedCycle.StoreId)
             };
 
 
@@ -195,7 +195,7 @@ namespace Pedal.Web.Controllers
                 CustomerId = User.Identity.GetUserId(),
                 BookingTime = DateTime.Now,
                 StoreId = toBeBookedCycle.StoreId,
-                BookingTrackId = this.BookinTrackIdGenerator(),
+                BookingTrackId = TrackIdGenerotor.Generate()
             };
 
             _unitOfWork.Bookings.Add(toBeBooked);
@@ -206,20 +206,6 @@ namespace Pedal.Web.Controllers
             return View("Index", _unitOfWork.Cycles.GetCycleByStoreId(toBeBookedCycle.StoreId));
         }
 
-        private String BookinTrackIdGenerator()
-        {
-            const string arrr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            Random rnd = new Random();
-            string str = "";
-            int next;
-            for (int i = 0; i < 5; i++)
-            {
-                next = rnd.Next(0, 35);
-                str += arrr[next];
-
-            }
-            return str;
-
-        }
+        
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using Pedal.Models;
 using Pedal.Web.Models.ViewModels;
 
@@ -22,9 +23,22 @@ namespace Pedal.Web.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            var storeList = _unitOfWork.Stores.GetStoresWithAddress();
+            if (User.IsInRole("Admin"))
+            {
+                var storeList = _unitOfWork.Stores.GetStoresWithAddress();
 
-            return View(storeList);
+                return View(storeList);
+            }
+
+            if (User.IsInRole("Manager"))
+            {
+                var user = _unitOfWork.UserManager.FindById(User.Identity.GetUserId());
+                return View("ManagerIndex", _unitOfWork.Cycles.GetCycleForManager(user.StoreId));
+
+            }
+
+            return HttpNotFound();
+
         }
 
         // GET: Store/Details/5

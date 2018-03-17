@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Pedal.Models;
+using Pedal.Web.Models.ViewModels;
 
 namespace Pedal.Web.Controllers
 {
@@ -93,5 +96,42 @@ namespace Pedal.Web.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult Rent(int id)
+        {
+            var toBeRentedCycle = _unitOfWork.Cycles.GetCycleWithDetails(id);
+            RentViewModel toBeRented = new RentViewModel
+            {
+                Cycle = toBeRentedCycle,
+                ManagerId = User.Identity.GetUserId(),
+                RentedFromStoreId = toBeRentedCycle.StoreId
+            };
+
+
+            return View(toBeRented);
+        }
+
+        //[HttpPost]
+        //public ActionResult Booking(int id, Booking model)
+        //{
+        //    Cycle toBeBookedCycle = _unitOfWork.Cycles.GetCycleWithDetails(id);
+        //    Booking toBeBooked = new Booking
+        //    {
+        //        CycleId = id,
+        //        BookingStatus = true,
+        //        CustomerId = User.Identity.GetUserId(),
+        //        BookingTime = DateTime.Now,
+        //        StoreId = toBeBookedCycle.StoreId,
+        //        BookingTrackId = this.BookinTrackIdGenerator(),
+        //    };
+
+        //    _unitOfWork.Bookings.Add(toBeBooked);
+        //    toBeBookedCycle.CycleStatusType = CycleStatusType.Booked;
+        //    _unitOfWork.Complete();
+
+
+        //    return View("Index", _unitOfWork.Cycles.GetCycleByStoreId(toBeBookedCycle.StoreId));
+        //}
     }
 }

@@ -1,0 +1,128 @@
+﻿@model Pedal.Web.Models.ViewModels.RentViewModel
+
+@{
+    ViewBag.Title = "Rent";
+}
+
+<h2>Rent</h2>
+
+<h2>Cycle Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Company Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.Company.Name)
+        </dd>
+
+        <dt>
+            Cycle Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.CycleType)
+        </dd>
+
+        <dt>
+            Store Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.Store.Name)
+        </dd>
+
+        <dt>
+            Cycle Status
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.CycleStatusType)
+        </dd>
+
+        <dt>
+            Total Rented Time
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.RentedHour) Hours
+        </dd>
+
+        <dt>
+            Cost Per Hour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.CostPerHour) TK
+        </dd>
+
+
+
+    </dl>
+</div>
+
+@using (Ajax.BeginForm("FindCustomer", "Manager", new AjaxOptions  
+{  
+    InsertionMode = InsertionMode.Replace,  
+    HttpMethod = "GET",
+    OnFailure = "fnError",  
+    OnBegin = "fnOnBegin",  
+    UpdateTargetId = "findCustomer",  
+}))  
+{  
+    <div class="form-horizontal">  
+        <div class="form-group">  
+            Student Name:  
+            <input type="text" name="SearchTerm" placeholder="Keyword" class="form-control" />  
+        </div>  
+        <div class="form-group">  
+            <input type="submit" value="Search" class="btn btn-default" />  
+        </div>  
+    </div>  
+}  
+<div id="divSearchStudent"></div> 
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>RentViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Pin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

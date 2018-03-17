@@ -22,6 +22,8 @@ namespace Pedal.Web
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
+                      "~/Scripts/jquery-3.3.1.js",
+                      "~/Scripts/jquery.unobtrusive-ajax.min.js",
                       "~/Scripts/DataTables/jquery.dataTables.min.js",
                       "~/Scripts/DataTables/dataTables.bootstrap.min.js"));
 

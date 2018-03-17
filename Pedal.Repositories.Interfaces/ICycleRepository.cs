@@ -12,5 +12,6 @@ namespace Pedal.Repositories.Interfaces
         Cycle GetCycleWithDetails(int id);
         IEnumerable<Cycle> GetAllWithDetails();
         IEnumerable<Cycle> GetCycleByStoreId(int id);
+        IEnumerable<Cycle> GetCycleForManager(int id);
     }
 }
