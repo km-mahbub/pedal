@@ -1,4 +1,5 @@
-﻿@model Pedal.Web.Models.ViewModels.RentViewModel
+﻿@using System.Web.UI.WebControls
+@model Pedal.Web.Models.ViewModels.RentViewModel
 
 @{
     ViewBag.Title = "Rent";
@@ -64,26 +65,26 @@
     </dl>
 </div>
 
-@using (Ajax.BeginForm("FindCustomer", "Manager", new AjaxOptions  
+@*@using (Ajax.BeginForm("FindCustomer", "Manager", new AjaxOptions  
 {  
     InsertionMode = InsertionMode.Replace,  
     HttpMethod = "GET",
     OnFailure = "fnError",  
     OnBegin = "fnOnBegin",  
-    UpdateTargetId = "findCustomer",  
+    UpdateTargetId = "CustomerName",  
 }))  
 {  
     <div class="form-horizontal">  
         <div class="form-group">  
-            Student Name:  
-            <input type="text" name="SearchTerm" placeholder="Keyword" class="form-control" />  
+            Customer Name:  
+            <input type="text" name="customer" placeholder="Keyword" class="form-control" />  
         </div>  
         <div class="form-group">  
             <input type="submit" value="Search" class="btn btn-default" />  
         </div>  
     </div>  
 }  
-<div id="divSearchStudent"></div> 
+<input type="hidden" id="CustomerName" name="CustomerName"/>*@
 
 
 @using (Html.BeginForm())
@@ -98,22 +99,23 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @onInput = "findCustomer()", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                <span id="CustomerNameError"></span>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Pin, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Pin, htmlAttributes: new {  @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Pin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Pin, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control", @Value = "", @placeholder = "Enter 4 Digit Pin Given By Customer" } })
                 @Html.ValidationMessageFor(model => model.Pin, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" id="Submit" disabled value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -125,4 +127,43 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    
+    <script type="text/javascript">
+        var findCustomer = function() {
+
+            var name = $('#CustomerName');
+            var pin = $('#Pin');
+            var submit = $('#Submit');
+            var error = $('#CustomerNameError');
+            var url = '@Url.Action("FindCustomer","Manager")';
+            var data = { value: name.val() }
+            $.ajax({
+                url: url,
+                data: data,
+                success : function(data) 
+                {
+                    //$('#CustomerName').val(data.Value1);
+                    //console.log(data);
+                    if (data === 'True') {
+
+                        error.text("Customer Matched!");
+                        error.removeClass("text-danger");
+                        error.addClass("text-success");
+                        pin.prop('disabled', false);
+                        submit.prop('disabled', false);
+                        
+                    }
+                    if(data === 'False') {
+                        //name.addClass("has-error");
+                        error.text("No customer Found!");
+                        error.removeClass("text-success");
+                        error.addClass("text-danger");
+                        pin.prop('disabled', true);
+                        submit.prop('disabled', true);    
+                    }
+                }
+                
+            });
+        }
+    </script>
 }

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Pedal.Models;
+using Pedal.Web.Helpers;
 using Pedal.Web.Models.ViewModels;
 
 namespace Pedal.Web.Controllers
@@ -112,6 +113,30 @@ namespace Pedal.Web.Controllers
             return View(toBeRented);
         }
 
+        [HttpPost]
+        public ActionResult Rent(int id, RentViewModel model)
+        {
+            var customer = _unitOfWork.UserManager.FindByName(model.CustomerName);
+            var cycle = _unitOfWork.Cycles.Get(id);
+            var store = _unitOfWork.Stores.Get(cycle.StoreId);
+            Rent toBeRented = new Rent
+            {
+                CycleId = id,
+                ManagerId = User.Identity.GetUserId(),
+                RentedFromStoreId = store.StoreId,
+                CustomerId = customer.Id,
+                TrackId = TrackIdGenerotor.Generate(),
+                RentedTime = DateTime.Now
+            };
+
+            cycle.CycleStatusType = CycleStatusType.Rented;
+            _unitOfWork.Rents.Add(toBeRented);
+            _unitOfWork.Complete();
+            return RedirectToAction("Index", "Store");
+
+            return HttpNotFound();
+        }
+
         //[HttpPost]
         //public ActionResult Booking(int id, Booking model)
         //{
@@ -133,5 +158,18 @@ namespace Pedal.Web.Controllers
 
         //    return View("Index", _unitOfWork.Cycles.GetCycleByStoreId(toBeBookedCycle.StoreId));
         //}
+
+        [HttpGet]
+        public bool FindCustomer(string value)
+        {
+            var user = _unitOfWork.UserManager.FindByName(value);
+
+            if (user == null)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
