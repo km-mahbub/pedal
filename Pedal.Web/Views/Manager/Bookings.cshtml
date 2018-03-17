@@ -10,49 +10,58 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table table-striped" id="tdata">
+    <thead>
     <tr>
-        
+
         <th>
-            @Html.DisplayNameFor(model => model.Cycle.CycleId)
+            Cycle Name
         </th>
-        
+
         <th>
-            @Html.DisplayNameFor(model => model.BookingTime)
+            Booking Time
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BookingTrackId)
-)        </th>
-      
+            Track ID
+        </th>
        
+
+
         <th></th>
     </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
 
-@foreach (var item in Model) {
-    <tr>
-      
-        <td>
-            @Html.DisplayFor(modelItem => item.Cycle.CycleId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BookingTrackId)
-        </td>
-       
-        
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.BookingId }) |*@
-            @Html.ActionLink("Rent", "ConfirmBooking", new { id=item.BookingId })
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.BookingId })*@
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.Cycle.Company.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookingTrackId)
+            </td>
+           
+
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.BookingId }) |*@
+                @Html.ActionLink("Rent", "RentFromBooking", new { id = item.BookingId })
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.BookingId })*@
+            </td>
+        </tr>
+    }
+    </tbody>
+    
 
 </table>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#tdata').DataTable();
-    })
-</script>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tdata').DataTable();
+        })
+    </script>
+}

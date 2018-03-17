@@ -23,7 +23,7 @@ namespace Pedal.Web.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("Admin") || User.IsInRole("Customer"))
             {
                 var storeList = _unitOfWork.Stores.GetStoresWithAddress();
 

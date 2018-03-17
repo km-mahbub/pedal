@@ -184,7 +184,7 @@ namespace Pedal.Web.Controllers
             var booking = _unitOfWork.Bookings.Get(id);
             var customer = _unitOfWork.UserManager.FindById(booking.CustomerId);
             var manager = _unitOfWork.UserManager.FindById(User.Identity.GetUserId());
-            var cycle = _unitOfWork.Cycles.Get(booking.CycleId);
+            var cycle = _unitOfWork.Cycles.GetCycleWithDetails(booking.CycleId);
             var store = _unitOfWork.Stores.Get(booking.StoreId);
             var rentTime = DateTime.Now;
 
