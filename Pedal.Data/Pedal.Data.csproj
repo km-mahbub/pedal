@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201803161850172_EditedBookings.Designer.cs">
       <DependentUpon>201803161850172_EditedBookings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803171936095_costadeed.cs" />
+    <Compile Include="Migrations\201803171936095_costadeed.Designer.cs">
+      <DependentUpon>201803171936095_costadeed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803161850172_EditedBookings.resx">
       <DependentUpon>201803161850172_EditedBookings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803171936095_costadeed.resx">
+      <DependentUpon>201803171936095_costadeed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -24,7 +24,7 @@ namespace Pedal.Web.Helpers
         public static int CalculateHour (DateTime rentedTime)
         {
 
-            TimeSpan hour = rentedTime - DateTime.Now;
+            TimeSpan hour = DateTime.Now - rentedTime;
             var hours = Math.Ceiling(hour.TotalHours);
            
             return (int)hours;

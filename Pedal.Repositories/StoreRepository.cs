@@ -21,6 +21,10 @@ namespace Pedal.Repositories
         {
             return ApplicationDbContext.Stores.Include(a => a.Address).ToList();
         }
-        
+
+        public Store GetStoreWithManager(string id)
+        {
+            return ApplicationDbContext.Stores.SingleOrDefault(c => c.ManagerId == id);
+        }
     }
 }

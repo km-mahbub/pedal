@@ -131,6 +131,7 @@ namespace Pedal.Web.Controllers
             };
 
             cycle.CycleStatusType = CycleStatusType.Rented;
+            store.TotalCycle -= 1;
             _unitOfWork.Rents.Add(toBeRented);
             _unitOfWork.Complete();
             return RedirectToAction("Index", "Store");
@@ -234,9 +235,69 @@ namespace Pedal.Web.Controllers
 
         }
 
+        [HttpPost]
+        public ActionResult ReceiveCycle(CashMemoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var rent = _unitOfWork.Rents.GetRentByTrackId(model.TrackId);
+
+                var cycle = _unitOfWork.Cycles.Get(rent.CycleId);
+
+                var store = _unitOfWork.Stores.GetStoreWithManager(User.Identity.GetUserId());
+
+                var rentedHour = TrackIdGenerotor.CalculateHour(rent.RentedTime);
+
+                CashMemo memo = new CashMemo
+                {
+                    RentedHour = rentedHour,
+                    TotalCost = TrackIdGenerotor.CalculateCost(rentedHour, (int)cycle.CostPerHour),
+                    ManagerId = User.Identity.GetUserId(),
+                    CustomerId = rent.CustomerId,
+                    RentId = rent.RentId,
+                    StoreId = _unitOfWork.Stores.GetStoreWithManager(User.Identity.GetUserId()).StoreId,
+                    CashReceiveTime = DateTime.Now,
+                };
+
+                _unitOfWork.CashMemos.Add(memo);
+                cycle.CycleStatusType = CycleStatusType.Available;
+                cycle.RentedHour += rentedHour;
+                cycle.StoreId = store.StoreId;
+
+                rent.IsReceived = true;
+                rent.ReturnTime = DateTime.Now;
+                rent.ToBeSubmittedStoreId = store.StoreId;
+
+                store.TotalCycle += 1;
+
+                _unitOfWork.Complete();
+
+                return RedirectToAction("Index", "Store");
+            }
+            
 
 
+            return HttpNotFound();
 
+        }
 
+        [HttpGet]
+        public ActionResult FindCycle(string value)
+        {
+            var rent = _unitOfWork.Rents.GetRentByTrackId(value);
+            var cycle = _unitOfWork.Cycles.Get(rent.CycleId);
+            var rentedHour = TrackIdGenerotor.CalculateHour(rent.RentedTime);
+
+            var viewModel = new CashMemoViewModel
+            {
+                CustomerName = _unitOfWork.UserManager.FindById(rent.CustomerId).UserName,
+                CycleName = _unitOfWork.Companies.Get(cycle.CompanyId).Name,
+                RentedFromStoreName = _unitOfWork.Stores.Get(rent.RentedFromStoreId).Name,
+                RentedHour = rentedHour,
+                TotalCost = TrackIdGenerotor.CalculateCost(rentedHour, (int)cycle.CostPerHour)
+            };
+
+            return Json(viewModel, JsonRequestBehavior.AllowGet);
+        }
     }
 }

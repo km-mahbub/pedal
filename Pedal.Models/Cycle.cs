@@ -17,7 +17,7 @@ namespace Pedal.Models
         public Company Company { get; set; }
         public int StoreId { get; set; }
         public Store Store { get; set; }
-        public Double CostPerHour { get; set; }
+        public double CostPerHour { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

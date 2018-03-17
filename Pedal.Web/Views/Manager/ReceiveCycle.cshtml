@@ -7,58 +7,26 @@
 <h2>ReceiveCycle</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>CashMemoViewModel</h4>
         <hr />
+        <h4>Insert Rent Tract Id To Generate Cash Memo</h4>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.TrackId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TrackId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TrackId, new { htmlAttributes = new { @onInput = "findCycle()", @class = "form-control" } }) <br /><span id="Error"></span>
                 @Html.ValidationMessageFor(model => model.TrackId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RentedFromStoreName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RentedFromStoreName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RentedFromStoreName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RentId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RentId, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RentId, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RentedHour, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RentedHour, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RentedHour, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TotalCost, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TotalCost, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TotalCost, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.CustomerName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @disabled="disabled", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -66,22 +34,38 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CycleName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CycleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.CycleName, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CycleName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ReceivedAtStoreName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RentedFromStoreName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ReceivedAtStoreName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ReceivedAtStoreName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.RentedFromStoreName, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RentedFromStoreName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RentedHour, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RentedHour, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RentedHour, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalCost, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TotalCost, new { htmlAttributes = new { @disabled = "disabled", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TotalCost, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" disabled id="Submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -93,4 +77,53 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        var findCycle = function() {
+
+            var trackId = $('#TrackId');
+            var name = $('#CustomerName');
+            var cycle = $('#CycleName');
+            var submit = $('#Submit');
+            var store = $('#RentedFromStoreName');
+            var rentedHour = $('#RentedHour');
+            var totalCost = $('#TotalCost');
+            var error = $('#Error');
+            var url = '@Url.Action("FindCycle","Manager")';
+            var data = { value: trackId.val() }
+            $.ajax({
+                url: url,
+                data: data,
+                success : function(data)
+                {
+                    //$('#CustomerName').val(data.Value1);
+                    
+
+                        error.text("Matched!");
+                        error.removeClass("text-danger");
+                        error.addClass("text-success");
+                        name.val(data.CustomerName);
+                        cycle.val(data.CycleName);
+                        store.val(data.RentedFromStoreName);
+                        rentedHour.val(data.RentedHour);
+                        totalCost.val(data.TotalCost);
+                        submit.prop('disabled', false);
+
+                    
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    error.text("Rent NOT Found!");
+                    error.removeClass("text-success");
+                    error.addClass("text-danger");
+                    name.val("");
+                    cycle.val("");
+                    store.val("");
+                    rentedHour.val("");
+                    totalCost.val("");
+                    submit.prop('disabled', true);
+                }
+
+            });
+        }
+    </script>
 }
