@@ -9,5 +9,6 @@ namespace Pedal.Repositories.Interfaces
 {
     public interface IRentRepository: IRepository<Rent>
     {
+        Rent GetRentByTrackId(string trackId);
     }
 }

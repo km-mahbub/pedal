@@ -20,5 +20,24 @@ namespace Pedal.Web.Helpers
             return str;
 
         }
+
+        public static int CalculateHour (DateTime rentedTime)
+        {
+
+            TimeSpan hour = rentedTime - DateTime.Now;
+            var hours = Math.Ceiling(hour.TotalHours);
+           
+            return (int)hours;
+
+        }
+        public static int CalculateCost(int cost,int hour)
+        {
+            return cost*hour;
+        }
+
+        
+
+
+
     }
 }

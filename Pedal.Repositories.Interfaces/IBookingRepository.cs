@@ -10,5 +10,6 @@ namespace Pedal.Repositories.Interfaces
     public interface IBookingRepository :IRepository<Booking>
     {
         IEnumerable<Booking> GetBookedCycleByStoreId(int id);
+        
     }
 }

@@ -15,5 +15,10 @@ namespace Pedal.Repositories
         {
         }
         public ApplicationDbContext ApplicationDbContext => Context as ApplicationDbContext;
+
+        public Rent GetRentByTrackId(string trackId)
+        {
+            return ApplicationDbContext.Rents.Where(c => c.IsReceived != true).SingleOrDefault(c=>c.TrackId==trackId);
+        }
     }
 }

@@ -627,6 +627,7 @@
     <Content Include="Views\Manager\Rent.cshtml" />
     <Content Include="Views\Manager\Bookings.cshtml" />
     <Content Include="Views\Manager\RentFromBooking.cshtml" />
+    <Content Include="Views\Manager\ReceiveCycle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

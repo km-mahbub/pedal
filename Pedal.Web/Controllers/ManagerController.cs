@@ -226,5 +226,17 @@ namespace Pedal.Web.Controllers
             return RedirectToAction("Bookings");
 
         }
+        [HttpGet]
+        public ActionResult ReceiveCycle()
+        {
+
+            return View();
+
+        }
+
+
+
+
+
     }
 }
