@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Pedal.Models;
 using Pedal.Web.Models.ViewModels;
+using Pedal.Web.Helpers;
 
 namespace Pedal.Web.Controllers
 {
@@ -133,5 +134,66 @@ namespace Pedal.Web.Controllers
 
         //    return View("Index", _unitOfWork.Cycles.GetCycleByStoreId(toBeBookedCycle.StoreId));
         //}
+
+        public ActionResult Bookings()
+        {
+            var manager=_unitOfWork.UserManager.FindById(User.Identity.GetUserId());
+            return View(_unitOfWork.Bookings.GetBookedCycleByStoreId(manager.StoreId));
+        } 
+
+        [HttpGet]
+        public ActionResult RentFromBooking(int id)
+        {
+            var booking = _unitOfWork.Bookings.Get(id);
+            var customer = _unitOfWork.UserManager.FindById(booking.CustomerId);
+            var manager = _unitOfWork.UserManager.FindById(User.Identity.GetUserId());
+            var cycle = _unitOfWork.Cycles.Get(booking.CycleId);
+            var store = _unitOfWork.Stores.Get(booking.StoreId);
+            var rentTime = DateTime.Now;
+
+            var viewModel = new BookingToRentViewModel
+            {
+                Customer = customer,
+                Manager = manager,
+                Cycle = cycle,
+                Store = store,
+                Booking = booking,
+                RentedTime = rentTime
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult RentFromBooking(int id,BookingToRentViewModel viewModel)
+        {
+            var booking = _unitOfWork.Bookings.Get(id);
+            var cycle = _unitOfWork.Cycles.Get(booking.CycleId);
+            var store = _unitOfWork.Stores.Get(booking.StoreId);
+            var rentTime = DateTime.Now;
+            var rent = new Rent
+            {
+                CycleId = cycle.CycleId,
+                RentedTime = rentTime,
+                RentedFromStoreId =store.StoreId,
+                ManagerId = User.Identity.GetUserId(),
+                CustomerId = booking.CustomerId,
+                TrackId = TrackIdGenerotor.Generate(),
+                BookingId = booking.BookingId
+            };
+            _unitOfWork.Rents.Add(rent);
+
+            booking.IsRented = true;
+            cycle.CycleStatusType = CycleStatusType.Rented;
+            store.TotalCycle -= 1;
+
+            _unitOfWork.Complete();
+            return RedirectToAction("Bookings");
+
+        }
+
+
+
+
+
+
     }
 }

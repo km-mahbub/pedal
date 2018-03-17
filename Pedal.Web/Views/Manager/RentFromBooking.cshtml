@@ -1,0 +1,91 @@
+﻿@model Pedal.Web.Models.ViewModels.BookingToRentViewModel
+
+@{
+    ViewBag.Title = "RentFromBooking";
+}
+
+<h2>Rent</h2>
+
+<h2>Cycle Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Company Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.Company.Name)
+        </dd>
+
+        <dt>
+            Cycle Type
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.CycleType)
+        </dd>
+        <dt>
+            Total Rented Time
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.RentedHour) Hours
+        </dd>
+
+        <dt>
+            Cost Per Hour
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cycle.CostPerHour) TK
+        </dd>
+        <dt>
+            Store Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Store.Name)
+        </dd>
+        <dt>
+            Manager Name
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manager.UserName)
+        </dd>
+
+        <dt>
+            Customer Name
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.UserName)
+        </dd>
+
+        <dt>
+            Booking Time
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking.BookingTime)
+        </dd>
+        <dt>
+            Booking Track Id
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Booking.BookingTrackId)
+        </dd>
+
+    </dl>
+</div>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @Html.Hidden("BookingId", Model.Booking.BookingId)
+            <input type="submit" value="Confirm" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
