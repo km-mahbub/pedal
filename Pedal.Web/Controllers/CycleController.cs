@@ -205,7 +205,8 @@ namespace Pedal.Web.Controllers
                 CustomerId = User.Identity.GetUserId(),
                 BookingTime = DateTime.Now,
                 StoreId = toBeBookedCycle.StoreId,
-                BookingTrackId = TrackIdGenerotor.Generate()
+                BookingTrackId = TrackIdGenerotor.Generate(),
+                CycleName = toBeBookedCycle.Company.Name
             };
 
             _unitOfWork.Bookings.Add(toBeBooked);
