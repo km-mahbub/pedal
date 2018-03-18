@@ -101,16 +101,17 @@
 /* You can remove this. */
 
 html{
-    height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
-body{
+/*body{
     display: flex;
     display: -webkit-flex;
     flex-direction: column;
     -webkit-flex-direction: column;
     height: 100%;
-}
+}*/
 
 .content{
    flex: 1 0 auto;
@@ -118,7 +119,15 @@ body{
    min-height: 200px;
 }
 
-#myFooter{
+/*#myFooter{
    flex: 0 0 auto;
    -webkit-flex: 0 0 auto;
+}*/
+
+#myFooter {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 290px;
 }
