@@ -22,5 +22,11 @@ namespace Pedal.Repositories
 
             return ApplicationDbContext.Bookings.Where(b => b.StoreId == id).Where(b => b.IsRented != true).Include(c => c.Cycle);
         }
+
+        public IEnumerable<Booking> GetBookingsByCustomerId(string id)
+        {
+            return ApplicationDbContext.Bookings.Where(b => b.CustomerId == id).Where(b => b.BookingStatus == true).Where(b=>b.IsDeleted!=true)
+                .Include(c => c.Cycle).Include(b=>b.Store);
+        }
     }
 }

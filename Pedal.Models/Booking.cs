@@ -21,5 +21,6 @@ namespace Pedal.Models
         public string CustomerId { get; set; }   
        
         public bool IsDeleted { get; set; }
+        public string CycleName { get; set; }
     }
 }
