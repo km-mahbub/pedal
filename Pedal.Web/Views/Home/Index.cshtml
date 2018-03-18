@@ -1,4 +1,119 @@
-﻿@{
-    ViewBag.Title = "Home";
+﻿@model IEnumerable<Pedal.Models.Store>
+
+@{
+    ViewBag.Title = "Index";
 }
+
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="~/images/IMG_20170825_194641.jpg" alt="ASP.NET" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Learn how to build ASP.NET apps that can run anywhere.
+                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/479e5c33ae1fff260440924f8f210a69.jpg" alt="ASP.NET" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    There are powerful new features in Visual Studio for building modern web apps.
+                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/10-best-backpacks-and-racks-for-bike-commuters.jpg" alt="Package Management" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Bring in libraries from NuGet and npm, and automate tasks using Grunt or Gulp.
+                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/images/back-view-woman-riding-a-bicycle-through-the-park-in-sunlight_bxl81avla_thumbnail-full01.png" alt="Microsoft Azure" class="img-responsive" />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
+                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
+                        Learn More
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+@* map load *@
+
+
+
+
+<style>
+    #map {
+        height: 400px;
+        width: 100%;
+    }
+</style>
+
+
 <br />
+<br />
+<div id="map"></div>
+<script type="text/javascript">
+    function initMap() {
+        var uluru = { lat: 23.8220435, lng: 90.4275632 };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: { lat: 23.82157239, lng: 90.43361426 },
+            map: map,
+            title: 'Shop1'
+        });
+        var marker = new google.maps.Marker({
+            position: { lat: 23.81890273, lng: 90.43103934 },
+            map: map,
+            title: 'Shop2'
+        });
+        var marker = new google.maps.Marker({
+            position: { lat: 23.81717527, lng: 90.4281211 },
+            map: map,
+            title: 'Shop3'
+        });
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUUQhTXvzb0HCxKhQH-Q_cIOG_QDcwZtk&callback=initMap">
+</script>
+
+
+
+
+
