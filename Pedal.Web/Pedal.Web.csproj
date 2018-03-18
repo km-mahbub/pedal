@@ -240,6 +240,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\CycleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -428,6 +429,8 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Footer-with-logo.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -438,6 +441,11 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Images\10-best-backpacks-and-racks-for-bike-commuters.jpg" />
+    <Content Include="Images\479e5c33ae1fff260440924f8f210a69.jpg" />
+    <Content Include="Images\back-view-woman-riding-a-bicycle-through-the-park-in-sunlight_bxl81avla_thumbnail-full01.png" />
+    <Content Include="Images\Couple-bicycle-riding-on-beach-hd-wallpaper-75-1920x1080.jpg" />
+    <Content Include="Images\IMG_20170825_194641.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -605,7 +613,6 @@
     <Content Include="Views\Account\RegisterCustomer.cshtml" />
     <Content Include="Views\Home\ManagerIndex.cshtml" />
     <Content Include="Views\Home\CustomerIndex.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cycle\Create.cshtml" />
     <Content Include="Views\Cycle\Details.cshtml" />
     <Content Include="Views\Cycle\Index.cshtml" />
@@ -628,6 +635,7 @@
     <Content Include="Views\Manager\Bookings.cshtml" />
     <Content Include="Views\Manager\RentFromBooking.cshtml" />
     <Content Include="Views\Manager\ReceiveCycle.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Pedal.Data;
 using Pedal.Models;
-using Pedal.Repositories;
 using Pedal.Repositories.Interfaces;
-
+using System;
 namespace Pedal.Web.Controllers
 {
     public class HomeController : Controller
@@ -24,6 +19,9 @@ namespace Pedal.Web.Controllers
 
         public ActionResult Index()
         {
+            var stores = _unitOfWork.Stores.GetAll();
+
+           
             if (User.Identity.IsAuthenticated)
             {
                 var user = User.Identity;
@@ -40,13 +38,13 @@ namespace Pedal.Web.Controllers
                 {
                     return View("CustomerIndex");
                 }
-                return View();
+                return View(stores);
             }
             else
             {
-                
+                return View(stores);
             }
-            return View();
+            
         }
 
         public ActionResult About()

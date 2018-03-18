@@ -27,7 +27,9 @@ namespace Pedal.Web
                       "~/Scripts/DataTables/dataTables.bootstrap.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/font-awesome.min.css",
                       "~/Content/bootstrap.css",
+                      "~/Content/Footer-with-logo.css",
                       "~/Content/site.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.min.css"));
         }
