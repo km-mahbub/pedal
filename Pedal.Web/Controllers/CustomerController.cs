@@ -115,8 +115,16 @@ namespace Pedal.Web.Controllers
             booking.BookingStatus = false;
             _unitOfWork.Complete();
             return RedirectToAction("CurrentBookings");
+        }
 
+        [Authorize(Roles = "Customer")]
+        public ActionResult RentHistory()
+        {
+            var rentHistory =_unitOfWork.CashMemos.GetRentHistoryByUserId(User.Identity.GetUserId());
+            return View(rentHistory);
 
         }
+
+
     }
 }

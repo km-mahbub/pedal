@@ -2,6 +2,7 @@
 using Pedal.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,5 +16,10 @@ namespace Pedal.Repositories
         {
         }
         public ApplicationDbContext ApplicationDbContext => Context as ApplicationDbContext;
+        public IEnumerable<CashMemo> GetRentHistoryByUserId(string id)
+        {
+            return ApplicationDbContext.CashMemos.Where(b => b.CustomerId == id).Include(b => b.Store)
+                .Include(r => r.Rent);
+        }
     }
 }
