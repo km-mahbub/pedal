@@ -74,7 +74,14 @@ namespace Pedal.Web.Controllers
                     CostPerHour = cycle.CostPerHour
                 };
                 _unitOfWork.Cycles.Add(cycleToAdd);
+
+                var store = _unitOfWork.Stores.Get(cycle.StoreId);
+                store.TotalCycle += 1;
+
                 _unitOfWork.Complete();
+
+
+
                 return RedirectToAction("Index");
             }
 
@@ -138,7 +145,8 @@ namespace Pedal.Web.Controllers
         public ActionResult Delete(int id)
         {
             var cycle = _unitOfWork.Cycles.GetCycleWithDetails(id);
-            if (cycle != null)
+            
+            if (cycle != null  && cycle.CycleStatusType == CycleStatusType.Available)
             {
                 return View(cycle);
             }
@@ -155,12 +163,15 @@ namespace Pedal.Web.Controllers
                 // TODO: Add delete logic here
                 if (ModelState.IsValid)
                 {
+
+
+
                     var cycleToDelete = _unitOfWork.Cycles.Get(id);
-
+                    var store = _unitOfWork.Stores.Get(cycleToDelete.StoreId);
+                    store.TotalCycle -= 1;
                     cycleToDelete.IsDeleted = true;
+
                     _unitOfWork.Complete();
-
-
                     return RedirectToAction("Index");
 
                 }

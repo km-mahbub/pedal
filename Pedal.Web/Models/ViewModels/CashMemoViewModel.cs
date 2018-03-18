@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Pedal.Web.Models.ViewModels
 {
@@ -24,5 +25,9 @@ namespace Pedal.Web.Models.ViewModels
         [Display(Name = "Cycle Name")]
         public string CycleName { get; set; }
         public string ReceivedAtStoreName { get; set; }
+        public IEnumerable<CashMemo> Transections { get; set; }
+        public IEnumerable<Store> Stores { get; set; }
+        public IEnumerable<ApplicationUser> Customers { get; set; }
+        public IEnumerable<Cycle> Cycles  { get; set; }
     }
 }

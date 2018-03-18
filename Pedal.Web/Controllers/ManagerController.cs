@@ -1,6 +1,7 @@
 ﻿using Pedal.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -322,7 +323,28 @@ namespace Pedal.Web.Controllers
         [Authorize(Roles = "Manager")]
         public ActionResult DailyTransaction()
         {
-            throw new NotImplementedException();
+            var stores = _unitOfWork.Stores.GetAll();
+            var customers = _unitOfWork.UserManager.Users;
+
+            var transections =
+                _unitOfWork.CashMemos.GetDailyTransectionByStore(_unitOfWork.Stores
+                    .GetStoreWithManager(User.Identity.GetUserId()).StoreId);
+            var cycles = _unitOfWork.Cycles.GetAll();
+
+            CashMemoViewModel MyModel = new CashMemoViewModel
+            {
+                Stores =  stores,
+                Customers = customers,
+                Transections = transections,
+                Cycles = cycles
+
+
+
+            };
+
+
+            return View(MyModel);
+
         }
     }
 }

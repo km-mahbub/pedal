@@ -10,5 +10,6 @@ namespace Pedal.Repositories.Interfaces
     public interface ICashMemoRepository :IRepository<CashMemo>
     {
         IEnumerable<CashMemo> GetRentHistoryByUserId(string id);
+        IEnumerable<CashMemo> GetDailyTransectionByStore(int id);
     }
 }
