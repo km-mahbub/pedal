@@ -1,0 +1,70 @@
+﻿@model Pedal.Web.Models.ViewModels.CashMemoViewModel
+
+@{
+    ViewBag.Title = "DailyTransaction";
+}
+
+<h2>Daily Transaction</h2>
+
+<table class="table">
+    <tr>
+
+        <th>
+            Rented From
+        </th>
+        <th>
+            Received At
+        </th>
+        <th>
+            Customer Name
+        </th>
+       
+        <td>
+            Rented Time
+        </td>
+        <th>
+            Receive Time
+        </th>
+        <th>
+            Hour
+        </th>
+        <td>
+            Rate/hour
+        </td>
+        <th>
+            cost
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Transections) {
+    <tr>
+        <td>
+            @Model.Stores.SingleOrDefault(x => x.StoreId == item.Rent.RentedFromStoreId)?.Name
+        </td>
+        <td>
+            @item.Store.Name
+        </td>
+        <td>
+            @Model.Customers.SingleOrDefault(x => x.Id == item.CustomerId)?.UserName
+        </td>
+        <td>
+            @item.Rent.RentedTime
+        </td>
+
+        <td>
+            @item.CashReceiveTime
+        </td>
+        <td>
+            @Model.Cycles.SingleOrDefault(x=>x.CycleId==item.Rent.CycleId)?.CostPerHour
+        </td>
+        <td>
+            @item.TotalCost
+        </td>
+
+
+    </tr>
+}
+
+</table>

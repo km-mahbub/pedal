@@ -21,5 +21,11 @@ namespace Pedal.Repositories
             return ApplicationDbContext.CashMemos.Where(b => b.CustomerId == id).Include(b => b.Store)
                 .Include(r => r.Rent);
         }
+
+        public IEnumerable<CashMemo> GetDailyTransectionByStore(int id)
+        {
+            return ApplicationDbContext.CashMemos.Where(b=>b.StoreId ==id).Where(b => b.CashReceiveTime.Date == DateTime.Now.Date)
+                .Include(b => b.Store).Include(b => b.Rent);
+        }
     }
 }
