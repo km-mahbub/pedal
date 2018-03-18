@@ -20,7 +20,7 @@ namespace Pedal.Repositories
 
             //return ApplicationDbContext.Bookings.Where(b=>b.BookingTime.Subtract(DateTime.Now).TotalHours > -2).Where(b=>b.StoreId==id);
 
-            return ApplicationDbContext.Bookings.Where(b => b.StoreId == id).Where(b => b.IsRented != true).Include(c => c.Cycle);
+            return ApplicationDbContext.Bookings.Where(b => b.StoreId == id).Where(b => b.IsRented != true).Where(c => c.IsDeleted == false).Include(c => c.Cycle);
         }
 
         public IEnumerable<Booking> GetBookingsByCustomerId(string id)

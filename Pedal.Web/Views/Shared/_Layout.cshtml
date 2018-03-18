@@ -55,13 +55,13 @@
                         <li>@Html.ActionLink("Companies", "Index", "Companies")</li>
                         <li>@Html.ActionLink("Add Managers", "AddManager", "Account")</li>
                     }
-                    @if (Request.IsAuthenticated)
+                    @*@if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("Stores", "Index", "Store")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    }
+                    }*@
                     
                 </ul>
                 @Html.Partial("_LoginPartial")
