@@ -94,7 +94,6 @@ namespace Pedal.Web.Controllers
                 var store = new Store
                 {
                     Name = model.Name,
-                    TotalCycle = model.TotalCycle,
                     AddressId = address.AddressId
 
                 };
