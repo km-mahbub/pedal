@@ -38,6 +38,13 @@ namespace Pedal.Web.Controllers
 
             }
 
+            if (User.IsInRole("Admin"))
+            {
+                var stores = _unitOfWork.Stores.GetStoresWithAddress();
+
+                return View(stores);
+            }
+
             var storeList = _unitOfWork.Stores.GetStoresWithAddress().Where(b => b.ManagerId != null);
 
             return View(storeList);

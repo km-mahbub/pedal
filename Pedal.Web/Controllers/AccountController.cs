@@ -254,7 +254,7 @@ namespace Pedal.Web.Controllers
 
                         if (store != null) store.ManagerId = user.Id;
                         _context.SaveChanges();
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Manager");
                     }
 
 
