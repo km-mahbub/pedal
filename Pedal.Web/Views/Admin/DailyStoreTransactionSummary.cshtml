@@ -1,0 +1,49 @@
+﻿@model Pedal.Web.Models.ViewModels.CashMemoViewModel
+
+@{
+    ViewBag.Title = "DailyStoreTransactionSummary";
+}
+
+<h2>Daily Transaction Summary</h2>
+
+<table class="table">
+    <tr>
+        
+        <th>
+            Store Name
+        </th>
+        <th>
+            Manager Name
+        </th>
+        <th>
+            Total
+        </th>
+        <th>
+            Total Transaction
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.Stores) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Model.Customers.FirstOrDefault(x=>x.Id == item.ManagerId).UserName
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalCycle)
+        </td>
+
+        <td>
+            @Model.Transections.Where(x=>x.StoreId == item.StoreId).Sum(x=>x.TotalCost)
+
+        </td>
+            @Html.ActionLink("Details", "DailyTransaction","Manager" new { id=item.StoreId }) |
+         
+    </tr>
+}
+
+</table>

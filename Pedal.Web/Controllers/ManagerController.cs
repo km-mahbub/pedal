@@ -320,15 +320,23 @@ namespace Pedal.Web.Controllers
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize(Roles = "Manager")]
-        public ActionResult DailyTransaction()
+        [Authorize(Roles = "Manager,Admin")]
+        public ActionResult DailyTransaction(int storeID=0)
         {
             var stores = _unitOfWork.Stores.GetAll();
             var customers = _unitOfWork.UserManager.Users.ToList();
-
-            var transections =
+            IEnumerable<CashMemo> transections;
+            if(storeID == 0)
+            {
+                transections =
                 _unitOfWork.CashMemos.GetDailyTransectionByStore(_unitOfWork.Stores
                     .GetStoreWithManager(User.Identity.GetUserId()).StoreId);
+            }
+            else
+            {
+                transections =_unitOfWork.CashMemos.GetDailyTransectionByStore(storeID);
+            }
+            
             var cycles = _unitOfWork.Cycles.GetAll();
 
             CashMemoViewModel myModel = new CashMemoViewModel
@@ -337,9 +345,6 @@ namespace Pedal.Web.Controllers
                 Customers = customers,
                 Transections = transections,
                 Cycles = cycles
-
-
-
             };
 
 

@@ -639,10 +639,10 @@
     <Content Include="Views\Customer\CurrentBookings.cshtml" />
     <Content Include="Views\Customer\RentHistory.cshtml" />
     <Content Include="Views\Manager\DailyTransaction.cshtml" />
+    <Content Include="Views\Admin\DailyStoreTransactionSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
     <Folder Include="Views\Rent\" />
   </ItemGroup>
   <ItemGroup>
