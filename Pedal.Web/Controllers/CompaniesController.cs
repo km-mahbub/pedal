@@ -13,6 +13,7 @@ using Pedal.Repositories.Interfaces;
 
 namespace Pedal.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CompaniesController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

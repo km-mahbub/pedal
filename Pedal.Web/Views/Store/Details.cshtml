@@ -25,7 +25,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TotalCycle) | @Html.ActionLink("View Cycles", "CycleStore", "Cycle", new { id = Model.StoreId }, null)
+            @Html.DisplayFor(model => model.TotalCycle) | @Html.ActionLink("View Cycles", "CycleStore", "Cycle", new { id = Model.StoreId }, new { @class = "btn btn-success btn-xs" })
         </dd>
 
         <dt>

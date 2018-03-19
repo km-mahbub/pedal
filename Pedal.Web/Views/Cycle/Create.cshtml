@@ -54,7 +54,8 @@
         @Html.LabelFor(model => model.CostPerHour, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
 
-            @Html.EditorFor(model => model.CostPerHour, new { @class = "form-control" })
+            @*@Html.EditorFor(model => model.CostPerHour, new { @class = "form-control" })*@
+            @Html.EditorFor(model => model.CostPerHour, new { htmlAttributes = new { @class = "form-control", @Value = "" } })
 
             @*@Html.DropDownList("StoreId", null, htmlAttributes: new { @class = "form-control" })*@
             @Html.ValidationMessageFor(model => model.CostPerHour, "", new { @class = "text-danger" })

@@ -19,6 +19,8 @@ namespace Pedal.Web.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
+        [Authorize(Roles = "Admin")]
         // GET: Cycle
         public ActionResult Index()
         {
@@ -27,6 +29,7 @@ namespace Pedal.Web.Controllers
 
         public ActionResult CycleStore(int id)
         {
+            ViewBag.StoreName = _unitOfWork.Stores.Get(id).Name;
             return View("Index", _unitOfWork.Cycles.GetCycleByStoreId(id));
         }
 
@@ -42,6 +45,7 @@ namespace Pedal.Web.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Cycle/Create
         public ActionResult Create()
         {
@@ -55,6 +59,7 @@ namespace Pedal.Web.Controllers
         }
 
         // POST: Cycle/Create
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Create(CycleViewModel cycle)
         {
@@ -70,15 +75,29 @@ namespace Pedal.Web.Controllers
                     CostPerHour = cycle.CostPerHour
                 };
                 _unitOfWork.Cycles.Add(cycleToAdd);
+
+                var store = _unitOfWork.Stores.Get(cycle.StoreId);
+                store.TotalCycle += 1;
+
                 _unitOfWork.Complete();
+
+
+
                 return RedirectToAction("Index");
             }
 
-            return HttpNotFound();
+            CycleViewModel model = new CycleViewModel
+            {
+                CompanyList = new SelectList(_unitOfWork.Companies.GetAll(), "CompanyId", "Name"),
+                StoreList = new SelectList(_unitOfWork.Stores.GetAll(), "StoreId", "Name")
+            };
+
+            return View(model);
 
         }
 
         // GET: Cycle/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             var cycle = _unitOfWork.Cycles.Get(id);
@@ -98,6 +117,7 @@ namespace Pedal.Web.Controllers
         }
 
         // POST: Cycle/Edit/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Edit(int id, CycleViewModel model)
         {
@@ -128,10 +148,12 @@ namespace Pedal.Web.Controllers
         }
 
         // GET: Cycle/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             var cycle = _unitOfWork.Cycles.GetCycleWithDetails(id);
-            if (cycle != null)
+            
+            if (cycle != null  && cycle.CycleStatusType == CycleStatusType.Available)
             {
                 return View(cycle);
             }
@@ -139,6 +161,7 @@ namespace Pedal.Web.Controllers
         }
 
         // POST: Cycle/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Delete(int id, Cycle model)
         {
@@ -147,12 +170,15 @@ namespace Pedal.Web.Controllers
                 // TODO: Add delete logic here
                 if (ModelState.IsValid)
                 {
+
+
+
                     var cycleToDelete = _unitOfWork.Cycles.Get(id);
-
+                    var store = _unitOfWork.Stores.Get(cycleToDelete.StoreId);
+                    store.TotalCycle -= 1;
                     cycleToDelete.IsDeleted = true;
+
                     _unitOfWork.Complete();
-
-
                     return RedirectToAction("Index");
 
                 }
@@ -165,6 +191,7 @@ namespace Pedal.Web.Controllers
             }
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpGet]
         public ActionResult Booking(int id)
         {
@@ -184,6 +211,7 @@ namespace Pedal.Web.Controllers
             return View(toBeBooked);
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         public ActionResult Booking(int id, Booking model)
         {
@@ -195,7 +223,8 @@ namespace Pedal.Web.Controllers
                 CustomerId = User.Identity.GetUserId(),
                 BookingTime = DateTime.Now,
                 StoreId = toBeBookedCycle.StoreId,
-                BookingTrackId = TrackIdGenerotor.Generate()
+                BookingTrackId = TrackIdGenerotor.Generate(),
+                CycleName = toBeBookedCycle.Company.Name
             };
 
             _unitOfWork.Bookings.Add(toBeBooked);

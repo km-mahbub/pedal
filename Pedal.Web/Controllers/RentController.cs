@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace Pedal.Web.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class RentController : Controller
     {
         IUnitOfWork _unitOfWork;

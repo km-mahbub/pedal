@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security.Provider;
+using Pedal.Models;
 
 namespace Pedal.Web.Controllers
 {
@@ -93,5 +96,35 @@ namespace Pedal.Web.Controllers
                 return View();
             }
         }
+        [Authorize(Roles = "Customer")]
+        public ActionResult CurrentBookings()
+        {
+            var userId = User.Identity.GetUserId();
+            var bookings = _unitOfWork.Bookings.GetBookingsByCustomerId(userId);
+            return View(bookings);
+        }
+
+        public ActionResult CancelBooking(int id)
+        {
+            var booking = _unitOfWork.Bookings.Get(id);
+            var cycle = _unitOfWork.Cycles.Get(booking.CycleId);
+
+            cycle.CycleStatusType = CycleStatusType.Available;
+
+            booking.IsDeleted = true;
+            booking.BookingStatus = false;
+            _unitOfWork.Complete();
+            return RedirectToAction("CurrentBookings");
+        }
+
+        [Authorize(Roles = "Customer")]
+        public ActionResult RentHistory()
+        {
+            var rentHistory =_unitOfWork.CashMemos.GetRentHistoryByUserId(User.Identity.GetUserId());
+            return View(rentHistory);
+
+        }
+
+
     }
 }

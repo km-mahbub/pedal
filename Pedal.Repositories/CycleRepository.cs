@@ -20,12 +20,12 @@ namespace Pedal.Repositories
 
         public Cycle GetCycleWithDetails(int id)
         {
-            return ApplicationDbContext.Cycles.Include(c => c.Company).Include(c => c.Store).SingleOrDefault(c => c.CycleId == id);
+            return ApplicationDbContext.Cycles.Where(b => b.IsDeleted == false).Include(c => c.Company).Include(c => c.Store).SingleOrDefault(c => c.CycleId == id);
         }
 
         public IEnumerable<Cycle> GetAllWithDetails()
         {
-            return ApplicationDbContext.Cycles.Include(c => c.Company).Include(c => c.Store);
+            return ApplicationDbContext.Cycles.Where(b => b.IsDeleted == false).Include(c => c.Company).Include(c => c.Store);
         }
 
         public IEnumerable<Cycle> GetCycleByStoreId(int id)

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Pedal.Models.CashMemo>
+
+@{
+    ViewBag.Title = "RentHistory";
+}
+
+<h2>Rent History</h2>
+
+<table class="table table-striped" id="tdata">
+    <thead>
+        <tr>
+
+            <th>
+                Submitted Store
+            </th>
+            <th>
+                Duration
+            </th>
+            <th>
+                Submitted Time
+            </th>
+            <th>
+                Cost
+            </th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Store.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RentedHour)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CashReceiveTime)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCost)
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tdata').DataTable();
+        })
+    </script>
+}

@@ -1,0 +1,86 @@
+﻿@model Pedal.Web.Models.ViewModels.CashMemoViewModel
+
+@{
+    ViewBag.Title = "DailyTransaction";
+}
+
+<h2>Daily Transaction</h2>
+
+<table class="table table-striped" id="tdata">
+    <thead>
+        <tr>
+
+            <th>
+                Rented From
+            </th>
+            <th>
+                Received At
+            </th>
+            <th>
+                Customer Name
+            </th>
+
+            <th>
+                Rented Time
+            </th>
+            <th>
+                Receive Time
+            </th>
+            <th>
+                Hour
+            </th>
+            <th>
+                Rate/hour
+            </th>
+            <th>
+                cost
+            </th>
+
+        </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (var item in Model.Transections)
+    {
+        <tr>
+            <td>
+                @Model.Stores.SingleOrDefault(x => x.StoreId == item.Rent.RentedFromStoreId).Name
+            </td>
+            <td>
+                @item.Store.Name
+            </td>
+            <td>
+                @Model.Customers.SingleOrDefault(x => x.Id == item.CustomerId).UserName
+            </td>
+            <td>
+                @item.Rent.RentedTime
+            </td>
+
+            <td>
+                @item.CashReceiveTime
+            </td>
+            <td>
+                @item.RentedHour
+            </td>
+            <td>
+                @Model.Cycles.SingleOrDefault(x => x.CycleId == item.Rent.CycleId).CostPerHour
+            </td>
+            <td>
+                @item.TotalCost
+            </td>
+
+
+        </tr>
+    }
+    </tbody>
+
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tdata').DataTable();
+        })
+    </script>
+}

@@ -1,6 +1,7 @@
 ﻿using Pedal.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -11,6 +12,7 @@ namespace Pedal.Web.Models.ViewModels
         public int StoreId { get; set; }
         public int AddressId { get; set; }
        // public Address Address { get; set; }
+        [Required]
         public String Name { get; set; }
         public int TotalCycle { get; set; }
 
@@ -19,8 +21,11 @@ namespace Pedal.Web.Models.ViewModels
         //Address 
         public Double Lat { get; set; }
         public Double Lon { get; set; }
+        [Required]
         public string Area { get; set; }
+        [Required]
         public string City { get; set; }
+        [Required]
         public string Country { get; set; }
     }
 }

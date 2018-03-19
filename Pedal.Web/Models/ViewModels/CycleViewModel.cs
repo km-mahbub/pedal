@@ -12,6 +12,7 @@ namespace Pedal.Web.Models.ViewModels
     {
         public int CycleId { get; set; }
         public int? RentedHour { get; set; }
+        [Required]
         [Display(Name = "Select Type")]
         public CycleType CycleType { get; set; }
         [Display(Name = "Select Company")]
@@ -21,9 +22,10 @@ namespace Pedal.Web.Models.ViewModels
         [Display(Name = "Select Store")]
         public int StoreId { get; set; }
         public IEnumerable<SelectListItem> StoreList { get; set; }
+        [Required]
         [Display(Name = "Select Status")]
         public CycleStatusType CycleStatusType { get; set; }
-
+        [Required]
         public Double CostPerHour { get; set; }
     }
 }
