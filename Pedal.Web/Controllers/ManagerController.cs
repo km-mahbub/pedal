@@ -28,9 +28,15 @@ namespace Pedal.Web.Controllers
         {
             var users = _unitOfWork.UserManager.Users.Where(b => b.UserType == "Manager").ToList();
 
+            StoreViewModel viewModel = new StoreViewModel
+            {
+                Stores = _unitOfWork.Stores.GetStoresWithAddress(),
+                AppUsers = users
+            };
+
             
            
-            return View(users);
+            return View(viewModel);
         }
 
         // GET: Manager/Details/5
@@ -90,9 +96,10 @@ namespace Pedal.Web.Controllers
 
         // GET: Manager/Delete/5
         [Authorize(Roles = "Admin")]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            var user = _unitOfWork.UserManager.FindById(id);
+            return View(user);
         }
 
         // POST: Manager/Delete/5
@@ -324,22 +331,16 @@ namespace Pedal.Web.Controllers
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize(Roles = "Manager,Admin")]
-        public ActionResult DailyTransaction(int storeID=0)
+        [Authorize(Roles = "Manager")]
+        public ActionResult DailyTransaction()
         {
             var stores = _unitOfWork.Stores.GetAll();
             var customers = _unitOfWork.UserManager.Users.ToList();
-            IEnumerable<CashMemo> transections;
-            if(storeID == 0)
-            {
-                transections =
+            
+            var transections =
                 _unitOfWork.CashMemos.GetDailyTransectionByStore(_unitOfWork.Stores
                     .GetStoreWithManager(User.Identity.GetUserId()).StoreId);
-            }
-            else
-            {
-                transections =_unitOfWork.CashMemos.GetDailyTransectionByStore(storeID);
-            }
+            
             
             var cycles = _unitOfWork.Cycles.GetAll();
 

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace Pedal.Web.Controllers
 {
@@ -44,7 +45,27 @@ namespace Pedal.Web.Controllers
         }
 
 
+        public ActionResult DailyTransactionAdmin(int id)
+        {
+            var stores = _unitOfWork.Stores.GetAll();
+            var customers = _unitOfWork.UserManager.Users.ToList();
+
+            var transections =
+                _unitOfWork.CashMemos.GetDailyTransectionByStore(id);
 
 
+            var cycles = _unitOfWork.Cycles.GetAll();
+
+            CashMemoViewModel myModel = new CashMemoViewModel
+            {
+                Stores = stores,
+                Customers = customers,
+                Transections = transections,
+                Cycles = cycles
+            };
+
+
+            return View("DailyTransaction", myModel);
+        }
     }
 }

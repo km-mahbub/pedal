@@ -47,5 +47,7 @@ namespace Pedal.Data
             modelBuilder.Configurations.Add(new AddressConfiguration());
             base.OnModelCreating(modelBuilder);
         }
+
+        public System.Data.Entity.DbSet<Pedal.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

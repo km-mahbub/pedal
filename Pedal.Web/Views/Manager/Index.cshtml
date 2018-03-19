@@ -1,13 +1,13 @@
-﻿@model IEnumerable<Pedal.Models.ApplicationUser>
+﻿@model Pedal.Web.Models.ViewModels.StoreViewModel
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Managers</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Manager", "AddManager", "Account", new { area = "" }, new { @class = "btn btn-success" })
 </p>
 <table class="table table-striped" id="tdata">
     <thead>
@@ -30,20 +30,20 @@
     </thead>
 
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.AppUsers)
         {
             <tr>
                 <td>
                     @item.FirstName  @item.LastName
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PhoneNumber)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Store.Name)
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @item.Store.Name
                 </td>
 
 
@@ -53,6 +53,7 @@
 
 
                 <td>
+                    @Html.ActionLink("Change Store", "Delete", new { id = item.Id }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id })
                 </td>
             </tr>

@@ -27,5 +27,9 @@ namespace Pedal.Web.Models.ViewModels
         public string City { get; set; }
         [Required]
         public string Country { get; set; }
+
+
+        public IEnumerable<Store> Stores { get; set; }
+        public IEnumerable<ApplicationUser> AppUsers { get; set; }
     }
 }
