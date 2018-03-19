@@ -48,6 +48,6 @@ namespace Pedal.Data
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<Pedal.Models.ApplicationUser> ApplicationUsers { get; set; }
+        
     }
 }
