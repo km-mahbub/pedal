@@ -443,9 +443,13 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Images\10-best-backpacks-and-racks-for-bike-commuters.jpg" />
+    <Content Include="Images\baky.jpg" />
+    <Content Include="Images\Dipto.jpg" />
+    <Content Include="Images\Ehsan.jpg" />
     <Content Include="Images\479e5c33ae1fff260440924f8f210a69.jpg" />
     <Content Include="Images\back-view-woman-riding-a-bicycle-through-the-park-in-sunlight_bxl81avla_thumbnail-full01.png" />
     <Content Include="Images\Couple-bicycle-riding-on-beach-hd-wallpaper-75-1920x1080.jpg" />
+    <Content Include="Images\ehsanul.jpg" />
     <Content Include="Images\IMG_20170825_194641.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
