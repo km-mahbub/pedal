@@ -10,6 +10,7 @@ namespace Pedal.Models
     public class Company
     {
         public int CompanyId { get; set; }
+        [Required]
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
     }

@@ -1,5 +1,5 @@
 #myFooter {
-    background-color: #3a3f46;
+    background-color: #18BC9C;
     color: white;
 }
 
@@ -9,7 +9,7 @@
 
 #myFooter .info{
     text-align: justify; 
-    color: #afb0b1;
+    color: #000;
 }
 
 #myFooter ul {
@@ -40,7 +40,7 @@
 }
 
 #myFooter a {
-    color: #d2d1d1;
+    color: #000;
     text-decoration: none;
 }
 
@@ -50,15 +50,15 @@
     color: white;
 }
 
-#myFooter .second-bar {
-    text-align: center;
-    background-color: #33373e;
-    text-align: center;
-}
+    #myFooter .second-bar {
+        text-align: center;
+        background-color: #1b9b82;
+        text-align: center;
+    }
 
 #myFooter .second-bar a {
     font-size: 22px;
-    color: #9fa3a9;
+    color: #000;
     padding: 10px;
     transition: 0.2s;
     line-height: 68px;
@@ -130,4 +130,5 @@ html{
     width: 100%;
     /* Set the fixed height of the footer here */
     height: 290px;
+
 }

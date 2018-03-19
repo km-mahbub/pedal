@@ -29,6 +29,7 @@ namespace Pedal.Web.Controllers
 
         public ActionResult CycleStore(int id)
         {
+            ViewBag.StoreName = _unitOfWork.Stores.Get(id).Name;
             return View("Index", _unitOfWork.Cycles.GetCycleByStoreId(id));
         }
 
@@ -85,7 +86,13 @@ namespace Pedal.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            return HttpNotFound();
+            CycleViewModel model = new CycleViewModel
+            {
+                CompanyList = new SelectList(_unitOfWork.Companies.GetAll(), "CompanyId", "Name"),
+                StoreList = new SelectList(_unitOfWork.Stores.GetAll(), "StoreId", "Name")
+            };
+
+            return View(model);
 
         }
 

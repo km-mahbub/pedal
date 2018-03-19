@@ -28,7 +28,7 @@ namespace Pedal.Web.Controllers
 
                 if (IsRole() == "Admin")
                 {
-                    return View("AdminIndex");
+                    return View("Index");
                 }
                 else if (IsRole() == "Manager")
                 {
@@ -36,7 +36,7 @@ namespace Pedal.Web.Controllers
                 }
                 else if (IsRole() == "Customer")
                 {
-                    return View("CustomerIndex");
+                    return View("Index");
                 }
                 return View(stores);
             }

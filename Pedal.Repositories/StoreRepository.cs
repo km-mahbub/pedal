@@ -19,12 +19,12 @@ namespace Pedal.Repositories
 
         public IEnumerable<Store> GetStoresWithAddress()
         {
-            return ApplicationDbContext.Stores.Include(a => a.Address).ToList();
+            return ApplicationDbContext.Stores.Where(b => b.IsDeleted == false).Include(a => a.Address).ToList();
         }
 
         public Store GetStoreWithManager(string id)
         {
-            return ApplicationDbContext.Stores.SingleOrDefault(c => c.ManagerId == id);
+            return ApplicationDbContext.Stores.Where(b => b.IsDeleted == false).SingleOrDefault(c => c.ManagerId == id);
         }
     }
 }

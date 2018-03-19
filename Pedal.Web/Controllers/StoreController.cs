@@ -28,6 +28,7 @@ namespace Pedal.Web.Controllers
             if (User.IsInRole("Manager"))
             {
                 var user = _unitOfWork.UserManager.FindById(User.Identity.GetUserId());
+                ViewBag.StoreName = _unitOfWork.Stores.Get(user.StoreId).Name;
                 return View("ManagerIndex", _unitOfWork.Cycles.GetCycleForManager(user.StoreId));
 
             }
@@ -67,8 +68,8 @@ namespace Pedal.Web.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
-            var CreateStore = new StoreViewModel();
-            return View(CreateStore);
+            var createStore = new StoreViewModel();
+            return View(createStore);
         }
 
 
@@ -107,10 +108,10 @@ namespace Pedal.Web.Controllers
 
                 return RedirectToAction("Index");
             }
-            else
-            {
-                return View();
-            }
+            
+            var createStore = new StoreViewModel();
+            return View(createStore);
+            
            
             
         }

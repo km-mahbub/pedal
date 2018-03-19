@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Pedal.Data;
+using static System.Data.Entity.DbFunctions;
 
 namespace Pedal.Repositories
 {
@@ -24,7 +25,7 @@ namespace Pedal.Repositories
 
         public IEnumerable<CashMemo> GetDailyTransectionByStore(int id)
         {
-            return ApplicationDbContext.CashMemos.Where(b=>b.StoreId ==id).Where(b => b.CashReceiveTime.Date == DateTime.Now.Date)
+            return ApplicationDbContext.CashMemos.Where(b=>b.StoreId ==id).Where(b => TruncateTime(b.CashReceiveTime) == TruncateTime(DateTime.Now))
                 .Include(b => b.Store).Include(b => b.Rent);
         }
     }

@@ -324,14 +324,14 @@ namespace Pedal.Web.Controllers
         public ActionResult DailyTransaction()
         {
             var stores = _unitOfWork.Stores.GetAll();
-            var customers = _unitOfWork.UserManager.Users;
+            var customers = _unitOfWork.UserManager.Users.ToList();
 
             var transections =
                 _unitOfWork.CashMemos.GetDailyTransectionByStore(_unitOfWork.Stores
                     .GetStoreWithManager(User.Identity.GetUserId()).StoreId);
             var cycles = _unitOfWork.Cycles.GetAll();
 
-            CashMemoViewModel MyModel = new CashMemoViewModel
+            CashMemoViewModel myModel = new CashMemoViewModel
             {
                 Stores =  stores,
                 Customers = customers,
@@ -343,7 +343,7 @@ namespace Pedal.Web.Controllers
             };
 
 
-            return View(MyModel);
+            return View(myModel);
 
         }
     }

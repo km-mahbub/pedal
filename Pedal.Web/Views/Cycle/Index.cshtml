@@ -5,91 +5,106 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
+@if (User.IsInRole("Admin"))
+{
+    <h2>Cycles</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create", new { area = "" }, new { @class = "btn btn-success" })
+    </p>
+}
+else
+{
+    <h2>@ViewBag.StoreName</h2>
+}
+
 <table class="table table-striped" id="tdata">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Company.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Store.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CycleStatusType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentedHour)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CycleType)
-            </th>
-            <th>
-                Cost Per Hour (TK)
-            </th>
-
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var item in Model)
-        {
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Company.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Store.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CycleStatusType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RentedHour)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CycleType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CostPerHour)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Company.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Store.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CycleStatusType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RentedHour)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CycleType)
+                </th>
+                <th>
+                    Cost Per Hour (TK)
+                </th>
 
-                
-                    @if (item.CycleStatusType == CycleStatusType.Available)
-                        {
-                            <td>
-                            @Html.ActionLink("Edit", "Edit", new {id = item.CycleId}) | 
-                            @Html.ActionLink("Details", "Details", new {id = item.CycleId}) | 
-                            @Html.ActionLink("Delete", "Delete", new {id = item.CycleId})
-                            </td>
-                        }
-                        else
-                        {
-                            <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.CycleId }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.CycleId }) 
-                            </td>
-                        }
-                   
-
-                    @*@Html.ActionLink("Book Now!", "Booking", "Cycle", new { id = item.CycleId }, null)*@
-               
+                <th></th>
             </tr>
-        }
-    </tbody>
+        </thead>
 
-</table>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Store.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CycleStatusType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RentedHour)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CycleType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CostPerHour)
+                    </td>
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#tdata').DataTable();
-    })
-</script>
+
+                    @if (item.CycleStatusType == CycleStatusType.Available && User.IsInRole("Admin"))
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.CycleId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.CycleId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.CycleId })
+                        </td>
+                    }
+                    else if (item.CycleStatusType != CycleStatusType.Available && User.IsInRole("Admin"))
+                    {
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.CycleId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.CycleId })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.ActionLink("Book Now!", "Booking", "Cycle", new { id = item.CycleId }, null)
+                        </td>
+                    }
+
+
+
+
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tdata').DataTable();
+        })
+    </script>
