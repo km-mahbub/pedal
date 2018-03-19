@@ -11,6 +11,7 @@ namespace Pedal.Web.Models.ViewModels
         public IEnumerable<Rent> Rents { get; set; }
         public IEnumerable<Store> Stores { get; set; }
         public IEnumerable<ApplicationUser> AppUsers { get; set; }
+        public IEnumerable<Cycle> Cycles { get; set; }
 
     }
 }

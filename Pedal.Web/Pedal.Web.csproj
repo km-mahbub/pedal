@@ -645,6 +645,7 @@
     <Content Include="Views\Admin\DailyTransaction.cshtml" />
     <Content Include="Views\Manager\Delete.cshtml" />
     <Content Include="Views\Admin\MostRentedStore.cshtml" />
+    <Content Include="Views\Customer\CurrentRents.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

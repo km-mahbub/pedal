@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security.Provider;
 using Pedal.Models;
+using Pedal.Web.Models.ViewModels;
 
 namespace Pedal.Web.Controllers
 {
@@ -123,6 +124,20 @@ namespace Pedal.Web.Controllers
             var rentHistory =_unitOfWork.CashMemos.GetRentHistoryByUserId(User.Identity.GetUserId());
             return View(rentHistory);
 
+        }
+
+        [Authorize(Roles = "Customer")]
+        public ActionResult CurrentRents()
+        {
+
+            var viewModel = new MostRentedStoreViewModel
+            {
+                Rents = _unitOfWork.Rents.GetAll().Where(c => c.CustomerId == User.Identity.GetUserId()).Where(x => x.IsReceived == false),
+                AppUsers = _unitOfWork.UserManager.Users.ToList(),
+                Cycles = _unitOfWork.Cycles.GetAllWithDetails()
+            };
+           
+            return View(viewModel);
         }
 
 
