@@ -11,5 +11,6 @@ namespace Pedal.Repositories.Interfaces
     {
         IEnumerable<CashMemo> GetRentHistoryByUserId(string id);
         IEnumerable<CashMemo> GetDailyTransectionByStore(int id);
+        IEnumerable<CashMemo> GetDailyTransaction();
     }
 }

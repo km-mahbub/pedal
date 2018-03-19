@@ -28,5 +28,11 @@ namespace Pedal.Repositories
             return ApplicationDbContext.CashMemos.Where(b=>b.StoreId ==id).Where(b => TruncateTime(b.CashReceiveTime) == TruncateTime(DateTime.Now))
                 .Include(b => b.Store).Include(b => b.Rent);
         }
+
+
+        public IEnumerable<CashMemo> GetDailyTransaction()
+        {
+            return ApplicationDbContext.CashMemos.Where(b => TruncateTime(b.CashReceiveTime) == TruncateTime(DateTime.Now)).ToList();
+        }
     }
 }
