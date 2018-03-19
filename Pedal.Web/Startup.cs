@@ -38,7 +38,8 @@ namespace Pedal.Web
                 var user = new ApplicationUser
                 {
                     UserName = "Admin",
-                    Email = "iamdipto7@gmail.com"
+                    Email = "iamdipto7@gmail.com",
+                    UserType = "Admin"
                 };
 
                 string userPWD = "Password10@";

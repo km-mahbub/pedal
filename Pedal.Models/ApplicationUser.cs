@@ -37,6 +37,7 @@ namespace Pedal.Models
         public bool IsDeleted { get; set; }
         public int StoreId { get; set; }
         public Store Store { get; set; }
+        public string UserType { get; set; }
 
     }
 }

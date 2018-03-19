@@ -639,6 +639,7 @@
     <Content Include="Views\Customer\CurrentBookings.cshtml" />
     <Content Include="Views\Customer\RentHistory.cshtml" />
     <Content Include="Views\Manager\DailyTransaction.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

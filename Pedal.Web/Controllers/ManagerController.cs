@@ -26,7 +26,11 @@ namespace Pedal.Web.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            return View();
+            var users = _unitOfWork.UserManager.Users.Where(b => b.UserType == "Manager").ToList();
+
+            
+           
+            return View(users);
         }
 
         // GET: Manager/Details/5

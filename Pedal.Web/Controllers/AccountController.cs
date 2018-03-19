@@ -210,7 +210,8 @@ namespace Pedal.Web.Controllers
                         PhoneNumber = model.PhoneNumber,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-                        StoreId = model.StoreId
+                        StoreId = model.StoreId,
+                        UserType = "Manager"
                     };
                 }
                 else
@@ -223,7 +224,8 @@ namespace Pedal.Web.Controllers
                         DateOfBirth = model.DateOfBirth,
                         PhoneNumber = model.PhoneNumber,
                         FirstName = model.FirstName,
-                        LastName = model.LastName
+                        LastName = model.LastName,
+                        UserType = "Customer"
                     };
                 }
                 var result = await UserManager.CreateAsync(user, model.Password);

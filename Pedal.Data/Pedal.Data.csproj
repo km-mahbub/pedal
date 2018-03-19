@@ -100,6 +100,10 @@
     <Compile Include="Migrations\201803181908175_bookingsupdate.Designer.cs">
       <DependentUpon>201803181908175_bookingsupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803190204544_AddedUserTypes.cs" />
+    <Compile Include="Migrations\201803190204544_AddedUserTypes.Designer.cs">
+      <DependentUpon>201803190204544_AddedUserTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -140,6 +144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201803181908175_bookingsupdate.resx">
       <DependentUpon>201803181908175_bookingsupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803190204544_AddedUserTypes.resx">
+      <DependentUpon>201803190204544_AddedUserTypes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
