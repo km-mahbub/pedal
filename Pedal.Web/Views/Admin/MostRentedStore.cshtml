@@ -21,7 +21,7 @@
 
                 <td>@item.Name</td>
                 <td>@Model.AppUsers.SingleOrDefault(x => x.Id == item.ManagerId).UserName</td>
-                <td>@Model.Rents.Where(x => x.RentedFromStoreId == item.StoreId).Sum(x => x.RentedFromStoreId)</td>
+                <td>@Model.Rents.Count(x => x.RentedFromStoreId == item.StoreId)</td>
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
