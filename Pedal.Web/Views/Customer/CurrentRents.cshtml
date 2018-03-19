@@ -1,0 +1,47 @@
+﻿@model Pedal.Web.Models.ViewModels.MostRentedStoreViewModel
+
+@{
+    ViewBag.Title = "CurrentRents";
+}
+
+<h2>Current Rents</h2>
+<hr /> <hr />
+<table class="table table-striped" id="tdata">
+    
+    <thead>
+        <tr>
+            <th>Cycle Name</th>
+            <th>Rented At</th>
+            <th>Rented From</th>
+            <th>Track Id</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model.Rents)
+        {
+            <tr>
+                <td>@Model.Cycles.SingleOrDefault(x => x.CycleId == item.CycleId).Company.Name</td>
+
+
+                <td>@Html.DisplayFor(modelItem => item.RentedTime)</td>
+
+                <td>@Model.Cycles.SingleOrDefault(x => x.CycleId == item.CycleId).Store.Name</td>
+
+                <td>@Html.DisplayFor(modelItem => item.TrackId)</td>
+
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tdata').DataTable();
+        })
+    </script>
+}
