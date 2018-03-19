@@ -451,6 +451,9 @@
     <Content Include="Images\Couple-bicycle-riding-on-beach-hd-wallpaper-75-1920x1080.jpg" />
     <Content Include="Images\ehsanul.jpg" />
     <Content Include="Images\IMG_20170825_194641.jpg" />
+    <Content Include="Images\LogoMakr %281%29.png" />
+    <Content Include="Images\LogoMakr %282%29.png" />
+    <Content Include="Images\LogoMakr_3pkHQC.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
