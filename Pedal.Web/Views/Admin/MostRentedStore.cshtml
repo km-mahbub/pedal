@@ -1,0 +1,30 @@
+﻿@model Pedal.Web.Models.ViewModels.MostRentedStoreViewModel
+
+@{
+    ViewBag.Title = "MostRentedStore";
+}
+
+<h2>Most Rented Stores List</h2>
+<h4>@DateTime.Now.Date</h4>
+<table class="table">
+    <tr>
+        <th>Store Name</th>
+        <th>Manager Name</th>
+        <th>Number Of Rents Today</th>
+    </tr>
+
+@foreach (var item in Model.Stores) {
+    <tr>
+
+        <td>@item.Name</td>
+        <td>@Model.AppUsers.SingleOrDefault(x=>x.Id == item.ManagerId).UserName</td>
+        <td>@Model.Rents.Where(x=>x.RentedFromStoreId == item.StoreId).Sum(x=>x.RentedFromStoreId)</td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+        </td>
+    </tr>
+}
+
+</table>

@@ -20,7 +20,6 @@ namespace Pedal.Models
         public int ToBeSubmittedStoreId { get; set; }
         public string ManagerId { get; set; }
         public bool IsReceived { get; set; }
-
         public string CustomerId { get; set; }
         public string TrackId { get; set; }
         public bool IsDeleted { get; set; }

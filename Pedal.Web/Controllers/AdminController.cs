@@ -67,5 +67,22 @@ namespace Pedal.Web.Controllers
 
             return View("DailyTransaction", myModel);
         }
+
+        public ActionResult MostRentedStore()
+        {
+            var rents = _unitOfWork.Rents.GetDaliyRents();
+            var customers = _unitOfWork.UserManager.Users.ToList();
+            var stores = _unitOfWork.Stores.GetAll();
+
+            var viewModel = new MostRentedStoreViewModel
+            {
+                Rents = rents,
+                AppUsers = customers,
+                Stores = stores
+            };
+            return View(viewModel);
+        }
+
+
     }
 }
