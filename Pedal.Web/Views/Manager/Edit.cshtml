@@ -1,0 +1,44 @@
+﻿@model Pedal.Web.Models.ViewModels.ChangeManagerViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Change Manager Store</h2>
+
+<p><strong>Manager Name</strong> @Model.AppUser.FirstName @Model.AppUser.LastName</p>
+@if (Model.Store != null)
+{
+    <p><strong>Current Store</strong> @Model.Store.Name</p>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Store", new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("Name")*@
+                @Html.DropDownListFor(model => model.StoreId, Model.Stores, "[Select Store]", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.StoreId)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Change Store" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

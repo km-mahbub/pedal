@@ -26,7 +26,7 @@ namespace Pedal.Web.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
-            var users = _unitOfWork.UserManager.Users.Where(b => b.UserType == "Manager").ToList();
+            var users = _unitOfWork.UserManager.Users.Where(b => b.UserType == "Manager").Where(c => c.IsDeleted == false).ToList();
 
             StoreViewModel viewModel = new StoreViewModel
             {
@@ -72,20 +72,40 @@ namespace Pedal.Web.Controllers
 
         // GET: Manager/Edit/5
         [Authorize(Roles = "Admin")]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            return View();
+            var user = _unitOfWork.UserManager.FindById(id);
+            var store = _unitOfWork.Stores.GetStoreWithManager(id);
+            var viewModel = new ChangeManagerViewModel
+            {
+                AppUser = user,
+                Store = store,
+                AppUsers = _unitOfWork.UserManager.Users.Where(b => b.IsDeleted == false).Where(b=>b.Id != user.Id).ToList(),
+                Stores = new SelectList(_unitOfWork.Stores.GetStoresWithAddress().Where(b => b.StoreId != store.StoreId), "StoreId", "Name")
+            };
+            return View(viewModel);
         }
 
         // POST: Manager/Edit/5
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(string id, ChangeManagerViewModel viewModel)
         {
             try
             {
                 // TODO: Add update logic here
+                var user = _unitOfWork.UserManager.FindById(id);
+                var oldStore = _unitOfWork.Stores.GetStoreWithManager(id);
+                var store = _unitOfWork.Stores.Get(viewModel.StoreId);
 
+                var oldManager = _unitOfWork.UserManager.FindById(store.ManagerId);
+
+                oldStore.ManagerId = null;
+                oldManager.StoreId = 0;
+                store.ManagerId = user.Id;
+                user.StoreId = store.StoreId;
+
+                _unitOfWork.Complete();
                 return RedirectToAction("Index");
             }
             catch
@@ -99,6 +119,8 @@ namespace Pedal.Web.Controllers
         public ActionResult Delete(string id)
         {
             var user = _unitOfWork.UserManager.FindById(id);
+            var store = _unitOfWork.Stores.GetStoreWithManager(id);
+            ViewBag.store = store;
             return View(user);
         }
 
@@ -114,6 +136,7 @@ namespace Pedal.Web.Controllers
                 var user = _unitOfWork.UserManager.FindById(id);
 
                 user.IsDeleted = true;
+                user.StoreId = 0;
 
                 var store = _unitOfWork.Stores.Get(user.StoreId);
 

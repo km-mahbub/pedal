@@ -28,12 +28,17 @@ namespace Pedal.Web.Controllers
             if (User.IsInRole("Manager"))
             {
                 var user = _unitOfWork.UserManager.FindById(User.Identity.GetUserId());
-                ViewBag.StoreName = _unitOfWork.Stores.Get(user.StoreId).Name;
-                return View("ManagerIndex", _unitOfWork.Cycles.GetCycleForManager(user.StoreId));
+                if (user.StoreId != 0)
+                {
+                    ViewBag.StoreName = _unitOfWork.Stores.Get(user.StoreId).Name;
+                    return View("ManagerIndex", _unitOfWork.Cycles.GetCycleForManager(user.StoreId));
+                }
+
+                return View("NoStoreView");
 
             }
 
-            var storeList = _unitOfWork.Stores.GetStoresWithAddress();
+            var storeList = _unitOfWork.Stores.GetStoresWithAddress().Where(b => b.ManagerId != null);
 
             return View(storeList);
 
