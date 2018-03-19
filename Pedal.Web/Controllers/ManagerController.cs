@@ -105,11 +105,21 @@ namespace Pedal.Web.Controllers
         // POST: Manager/Delete/5
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(string id, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
+
+                var user = _unitOfWork.UserManager.FindById(id);
+
+                user.IsDeleted = true;
+
+                var store = _unitOfWork.Stores.Get(user.StoreId);
+
+                store.ManagerId = null;
+
+                _unitOfWork.Complete();
 
                 return RedirectToAction("Index");
             }
