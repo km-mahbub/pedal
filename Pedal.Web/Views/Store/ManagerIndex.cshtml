@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Pedal.Models.Cycle>
+﻿@using Pedal.Models
+@model IEnumerable<Pedal.Models.Cycle>
 
 @{
     ViewBag.Title = "Index";
@@ -51,13 +52,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.CostPerHour)
                 </td>
-
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.CycleId }) |
+                @if (item.CycleStatusType == CycleStatusType.Available)
+                {
+                    
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.CycleId }) |
                         @Html.ActionLink("Details", "Details", new { id = item.CycleId }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.CycleId })*@
 
-                    @Html.ActionLink("Rent!", "Rent", "Manager", new { id = item.CycleId }, null)
+                        @Html.ActionLink("Rent!", "Rent", "Manager", new { id = item.CycleId }, null)
+                    
+                }
                 </td>
             </tr>
         }

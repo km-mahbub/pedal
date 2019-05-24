@@ -45,12 +45,24 @@
                     @Html.DisplayFor(modelItem => item.Address.City) |
                     @Html.DisplayFor(modelItem => item.Address.Country)
                 </td>
-
+                
+                @if(User.IsInRole("Admin"))
+                {
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id = item.StoreId }) |*@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.StoreId }) |
                     @Html.ActionLink("Go To Store", "Details", new { id = item.StoreId })
                     @*@Html.ActionLink("Delete", "Delete", new { id = item.StoreId })*@
                 </td>
+                }
+                else
+                {
+                    <td>
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.StoreId }) |*@
+                        @Html.ActionLink("Go To Store", "Details", new { id = item.StoreId })
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.StoreId })*@
+                    </td>
+                }
+
             </tr>
 
         }
